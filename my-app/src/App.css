@@ -1,0 +1,19 @@
+.App div {
+  outline: 1px solid red;
+  text-align: left;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+.App {
+  padding: 20px;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
