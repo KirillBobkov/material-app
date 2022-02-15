@@ -1,19 +1,30 @@
+import React, { useCallback } from 'react';
 import { observer } from 'mobx-react-lite';
-import './App.css';
-import postsStore from './state/state';
-import { Post } from './types';
 
-function App(): JSX.Element {
+import PostsStore from './state/PostsStore';
+import { IPost } from './interfaces';
+import Post from './components/Post';
+
+import './App.css';
+
+const App = observer((): JSX.Element => {
+  const handleDeletePost = useCallback((id) => {
+    PostsStore.deletePost(id);
+  }, [])
+
+  const handleUpdatePost = useCallback((id, data): Generator<Promise<any>, void, IPost> => {
+    return PostsStore.updatePost(id, data);
+  }, [])
+
   return (
     <div className="App">
-      {postsStore.posts && postsStore.posts.map((post: Post) => {
-        return <div key={post.id}>
-          <h5>{post.title}</h5>
-          <p>{post.body}</p>
-        </div>
-      })}
+      {PostsStore.error && <div>{PostsStore.error}</div>}
+      <ul>
+        {PostsStore.posts
+          .map((post: IPost) => <Post key={post.id} post={post} onUpdatePost={handleUpdatePost} onDeletePost={handleDeletePost} />)}
+      </ul>
     </div>
   );
-}
+});
 
-export default observer(App);
+export default App;
