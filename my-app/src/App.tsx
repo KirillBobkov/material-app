@@ -4,8 +4,7 @@ import { observer } from 'mobx-react-lite';
 import PostsStore from './state/PostsStore';
 import { IPost } from './interfaces';
 import Post from './components/Post';
-
-import './App.css';
+import Container from '@mui/material/Container';
 
 const App = observer((): JSX.Element => {
   const handleDeletePost = useCallback((id) => {
@@ -17,13 +16,13 @@ const App = observer((): JSX.Element => {
   }, [])
 
   return (
-    <div className="App">
+    <Container sx={{ padding: '20px' }} maxWidth="lg">
       {PostsStore.error && <div>{PostsStore.error}</div>}
-      <ul>
+      <ul style={{ listStyle: 'none', padding: 0 }}>
         {PostsStore.posts
           .map((post: IPost) => <Post key={post.id} post={post} onUpdatePost={handleUpdatePost} onDeletePost={handleDeletePost} />)}
       </ul>
-    </div>
+    </Container>
   );
 });
 
