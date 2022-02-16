@@ -56,7 +56,11 @@ class PostsStore {
         } catch (e: any) {
             this.error = e.message;
         }
-    }  
+    } 
+
+    get postsLength() {
+        return this.posts.length;
+    }
 }
 
 export default new PostsStore();

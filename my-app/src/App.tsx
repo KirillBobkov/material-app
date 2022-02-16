@@ -6,6 +6,7 @@ import { IPost } from './interfaces';
 import Post from './components/Post';
 import Container from '@mui/material/Container';
 import CreatePost from './components/CreatePostForm';
+import PostsCounter from './components/PostsCounter';
 
 const App = observer((): JSX.Element => {
   const handleDeletePost = useCallback((id) => {
@@ -22,6 +23,7 @@ const App = observer((): JSX.Element => {
 
   return (
     <Container sx={{ padding: '20px' }} maxWidth="lg">
+      <PostsCounter postsLength={PostsStore.postsLength} />
       {PostsStore.error && <div>{PostsStore.error}</div>}
       <CreatePost onCreatePost={handleCreatePost} />
       <ul style={{ listStyle: 'none', padding: 0 }}>
