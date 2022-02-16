@@ -1,7 +1,9 @@
+import { IPost } from './../interfaces/IPost';
+
 class Api {
   url = 'https://jsonplaceholder.typicode.com/posts';
 
-  performFetch(url: string, method: string = 'GET', body?: any) {
+  private performFetch(url: string, method: string = 'GET', body?: any) {
     return fetch(url, {
       method,
       body: JSON.stringify(body),
@@ -12,16 +14,20 @@ class Api {
       .then((response) => response.json());
   }
 
-  getPosts(): Promise<any> {
+  public getPosts(): Promise<any> {
     return this.performFetch(this.url);
   }
 
-  updatePosts(id: string, data: any) {
+  public updatePost(id: string, data: any) {
     return this.performFetch(`${this.url}/${id}`, 'PUT', data);
   }
 
-  deletePosts(id: string) {
+  public deletePost(id: string) {
     return this.performFetch(`${this.url}/${id}`, 'DELETE');
+  }
+
+  public createPost(data: Partial<IPost>) {
+    return this.performFetch(`${this.url}`, 'POST', data);
   }
 }
 
