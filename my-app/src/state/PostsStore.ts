@@ -1,4 +1,4 @@
-import { makeAutoObservable, onBecomeObserved } from "mobx";
+import { computed, flow, makeObservable, observable, onBecomeObserved, spy } from "mobx";
 import api from "../api";
 import { IPost } from '../interfaces/IPost';
 
@@ -7,8 +7,14 @@ class PostsStore {
     public error: string = '';
 
     constructor() {
-        makeAutoObservable(this, {}, {
-            autoBind: true,
+        makeObservable(this, {
+            posts: observable,
+            error: observable,
+            postsLength: computed,
+            fetchPosts: flow.bound,
+            deletePost: flow.bound,
+            updatePost: flow.bound,
+            createPost: flow.bound,
         })
 
         onBecomeObserved(this, 'posts', this.fetchPosts)

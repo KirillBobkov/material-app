@@ -5,33 +5,46 @@ import PostsStore from './state/PostsStore';
 import { IPost } from './interfaces';
 import Post from './components/Post';
 import Container from '@mui/material/Container';
-import CreatePost from './components/CreatePostForm';
+import CreatePostForm from './components/CreatePostForm';
 import PostsCounter from './components/PostsCounter';
+import { LinearProgress } from '@mui/material';
 
-const App = observer((): JSX.Element => {
+const App = (): JSX.Element => {
+  const { 
+    deletePost,
+    updatePost,
+    createPost,
+    postsLength,
+    error,
+    posts } = PostsStore;
+
   const handleDeletePost = useCallback((id) => {
-    PostsStore.deletePost(id);
+    deletePost(id);
   }, [])
 
   const handleUpdatePost = useCallback((id, data): Generator<Promise<any>, void, IPost> => {
-    return PostsStore.updatePost(id, data);
+    return updatePost(id, data);
   }, [])
 
   const handleCreatePost = useCallback((data): Generator<Promise<any>, void, IPost> => {
-    return PostsStore.createPost(data);
+    return createPost(data);
   }, [])
 
   return (
     <Container sx={{ padding: '20px' }} maxWidth="lg">
-      <PostsCounter postsLength={PostsStore.postsLength} />
-      {PostsStore.error && <div>{PostsStore.error}</div>}
-      <CreatePost onCreatePost={handleCreatePost} />
-      <ul style={{ listStyle: 'none', padding: 0 }}>
-        {PostsStore.posts
-          .map((post: IPost) => <Post key={post.id} post={post} onUpdatePost={handleUpdatePost} onDeletePost={handleDeletePost} />)}
-      </ul>
+      <PostsCounter postsLength={postsLength} />
+      {PostsStore.error && <div>{error}</div>}
+      <CreatePostForm onCreatePost={handleCreatePost} />
+      {posts.length 
+        ? 
+          <ul style={{ listStyle: 'none', padding: 0 }}>
+            {posts
+              .map((post: IPost) => <Post key={post.id} post={post} onUpdatePost={handleUpdatePost} onDeletePost={handleDeletePost} />)}
+          </ul>
+        : <LinearProgress />      
+      }
     </Container>
   );
-});
+};
 
-export default App;
+export default observer(App);
