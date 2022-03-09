@@ -1,11 +1,11 @@
 import { Button, TextField } from '@mui/material';
+import { observer } from 'mobx-react-lite';
 import React, { useEffect, useState } from 'react';
 import { IPost } from '../../interfaces';
+import PostsStore from '../../state/PostsStore';
 
 type Props = {
     post: IPost;
-    onDeletePost: (arg: string) => void;
-    onUpdatePost: (arg: string, arg2: IPost) => any;
 }
 
 const getInitialState = (): IPost =>  {
@@ -17,19 +17,20 @@ const getInitialState = (): IPost =>  {
   }
 }
 
-const Post = ({ post, onDeletePost, onUpdatePost }: Props) => {
+const Post = ({ post }: Props) => {
     const [isEditing, setIsEditing] = useState<boolean>(false);
     const [currentPost, setCurrentPost] = useState<IPost>(getInitialState());
+    const { deletePost, updatePost } = PostsStore;
 
     useEffect((): void => setCurrentPost({ ...post }), [post])
 
-    const onSaveChanges = () => {
-      onUpdatePost(post.id, currentPost)
-        .then((): void => setIsEditing(!isEditing))
+    const onSaveChanges = async () => {
+      await updatePost(post.id, currentPost);
+      setIsEditing(!isEditing);
     }
 
     const onEditPost = (): void => {
-        setIsEditing(!isEditing)
+      setIsEditing(!isEditing)
     }
 
     const onCancelEditing = () => {
@@ -38,7 +39,7 @@ const Post = ({ post, onDeletePost, onUpdatePost }: Props) => {
     }
 
     return (
-      <li style={{ marginBottom: '30px', padding: '10px', backgroundColor: '#F0F7FF' }}>
+      <li style={{ marginBottom: '30px', padding: '10px', backgroundColor: '#ffffff' }}>
         {isEditing ? 
           <>
             <TextField
@@ -81,7 +82,7 @@ const Post = ({ post, onDeletePost, onUpdatePost }: Props) => {
           </>
         }
         <div>
-          <Button variant="contained" sx={{ marginRight: '10px' }}  color="warning"  onClick={() => onDeletePost(post.id)}>Delete post</Button>
+          <Button variant="contained" sx={{ marginRight: '10px' }}  color="warning"  onClick={() => deletePost(post.id)}>Delete post</Button>
           {!isEditing && <Button variant="contained" onClick={onEditPost}>Edit post</Button>}
           {isEditing && <Button variant="contained"  color="success" sx={{ marginRight: '10px' }} onClick={onSaveChanges}>Save changes</Button>}
           {isEditing && <Button variant="contained" color="error" onClick={onCancelEditing}>Cancel changes</Button>}
@@ -91,4 +92,4 @@ const Post = ({ post, onDeletePost, onUpdatePost }: Props) => {
 }
 
 
-export default React.memo(Post);
+export default observer(Post);

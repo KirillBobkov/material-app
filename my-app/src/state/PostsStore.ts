@@ -1,5 +1,5 @@
-import { computed, flow, makeObservable, observable, onBecomeObserved, spy } from "mobx";
-import api from "../api";
+import { computed, flow, makeObservable, observable } from "mobx";
+import api from "../api/posts";
 import { IPost } from '../interfaces/IPost';
 
 class PostsStore {
@@ -14,19 +14,15 @@ class PostsStore {
             fetchPosts: flow.bound,
             deletePost: flow.bound,
             updatePost: flow.bound,
-            createPost: flow.bound,
         })
-
-        onBecomeObserved(this, 'posts', this.fetchPosts)
     }
 
     *fetchPosts () {
         try {
-            const response: IPost[] = yield api.getPosts();
-
-            this.posts = response.slice(0, 10);
+            const { data }: { data: IPost[] } = yield api.getPosts();
+            this.posts = data.slice(0, 10);
         } catch (e: any) {
-            this.error = 'error'
+            this.error = e
         }
     }
 
@@ -44,25 +40,15 @@ class PostsStore {
     
     *updatePost(id: string, data: any) {
         try {
-            const response: IPost = yield api.updatePost(id, data);
+            const { data: newData }: { data: IPost } = yield api.updatePost(id, data);
             
             const postIndex = this.posts.findIndex((post: IPost): boolean => post.id === id);
     
-            this.posts[postIndex] = response;
+            this.posts[postIndex] = newData;
         } catch (e: any) {
             this.error = e.message;
         }
     }   
-
-    *createPost(data: Partial<IPost>) {
-        try {
-            const response: IPost = yield api.createPost({ title: data.title, body: data.body });
-            
-            this.posts.unshift(response);
-        } catch (e: any) {
-            this.error = e.message;
-        }
-    } 
 
     get postsLength() {
         return this.posts.length;
