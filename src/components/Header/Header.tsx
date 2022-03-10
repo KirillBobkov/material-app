@@ -1,19 +1,23 @@
-import styled from 'styled-components';
-import { STEEL_GRAY, BLUE, WHITE } from '../../consts/colors';
 import React, { useContext } from 'react';
-import  { Link } from 'react-router-dom';
-import LoginForm from '../LoginForm';
+import  {  useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 import LogoutIcon from '@mui/icons-material/Logout';
 import PagesIcon from '@mui/icons-material/Pages';
 import HomeIcon from '@mui/icons-material/Home';
-import { AuthContext } from '../../context/Auth';
-import NavLink from '../NavLink';
-import pathRoutes from '../../consts/pathRoutes';
-import RegisterForm from '../RegisterForm';
 
-const NavLinks = styled.ul`
+import { AuthContext } from '../../context/Auth';
+
+import pathRoutes from '../../consts/pathRoutes';
+import { STEEL_GRAY, BLUE, WHITE } from '../../consts/colors';
+
+import RegisterForm from '../RegisterForm';
+import HeaderButton from '../HeaderButton';
+import LoginForm from '../LoginForm';
+
+const Navigation = styled.nav`
   display: flex;
   align-items: center;
   margin: 0;
@@ -62,44 +66,44 @@ const StyledHeader = styled.header`
 const Header = (): JSX.Element => {
   const [authState, setAuthState] = React.useState({ login: false, register: false });
   const auth = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleLogin = () => {
+    setAuthState({ login: true, register: false });
+  };
+
+  const handleLogout = () => {
+    setAuthState({ login: false, register: false }); 
+    auth.logOut(); 
+  };
+
+  const handleRegister = () => {
+    setAuthState({ login: false, register: true }); 
+  };
+
   return (
       <StyledHeader>
         <FlexContainerSpaced>
-          <NavLinks>
-            <NavLink>
-              <Link to={pathRoutes.home}>Home</Link>
-              <HomeIcon />
-            </NavLink>
-            <NavLink>
-              <Link to={pathRoutes.posts}>Posts</Link>
-              <PagesIcon />
-            </NavLink>
-          </NavLinks>
+          <Navigation>
+            <HeaderButton onClick={() => navigate(pathRoutes.home)} capture="Home" icon={<HomeIcon />}/>
+            <HeaderButton onClick={() => navigate(pathRoutes.posts)} capture="Posts" icon={ <PagesIcon />}/>
+          </Navigation>
           <StyledLoginContainer>
-            <NavLinks>
-            {!auth.user 
-              ? <>
-                  <NavLink onClick={() => { setAuthState({ login: true, register: false }); }}>
-                    <span>Login</span>
-                    <AccountCircleIcon />
-                  </NavLink>
-                  <NavLink onClick={() => { setAuthState({ login: false, register: true }); }}>
-                    <span>Register</span>
-                    <AppRegistrationIcon />
-                  </NavLink>
-                </>
-              : <NavLink onClick={() => { setAuthState({ login: false, register: false }); auth.logOut(); }}>
-                  <span>Logout</span>
-                  <LogoutIcon />
-                </NavLink>
-            } 
-            </NavLinks>
-            {authState.login && !auth.user && (
+            <Navigation>
+              {!auth.profile 
+                ? <>
+                    <HeaderButton  onClick={handleLogin} capture="Login" icon={<AccountCircleIcon />}/>
+                    <HeaderButton onClick={handleRegister} capture="Register" icon={<AppRegistrationIcon />}/>
+                  </>
+                : <HeaderButton  onClick={handleLogout} capture="Logout" icon={<LogoutIcon />}/>
+              } 
+            </Navigation>
+            {authState.login && !auth.profile && (
               <StyledLoginFloatContainer>
                 <LoginForm />
               </StyledLoginFloatContainer>
             )}
-            {authState.register && !auth.user && (
+            {authState.register && !auth.profile && (
               <StyledLoginFloatContainer>
                 <RegisterForm />
               </StyledLoginFloatContainer>

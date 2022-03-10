@@ -1,10 +1,10 @@
 
-import React, { useState, useContext } from 'react';
-
+import React, { useState, useContext, ChangeEvent } from 'react';
 import styled from 'styled-components';
+
 import { WHITE, STEEL_GRAY } from '../../consts/colors';
-import authApi from '../../api/auth';
 import { AuthContext } from '../../context/Auth';
+import authApi from '../../api/auth';
 import Input from '../Input';
 
 const getInitialState = (): any =>  {
@@ -23,7 +23,7 @@ const StyledForm = styled.form`
   padding: 20px;
 `;
 
-const LoginForm = () => {
+const LoginForm = (): JSX.Element => {
   const [loginData, setLoginData] = useState<any>(getInitialState());
   const auth = useContext(AuthContext);
 
@@ -31,24 +31,24 @@ const LoginForm = () => {
     e.preventDefault();
     const res = await authApi.login({ ...loginData });
     setLoginData(getInitialState());
-    auth.setToken(res.data.token);
-    auth.setUser(res.data.user);
+    auth.setTokenToStorage(res.data.token);
+    auth.setProfile(res.data.user);
   };
 
   return (
       <StyledForm onSubmit={onSubmit}>
-            <Input
-              label="E-mail"
-              placeholder="Enter your e-mail"
-              value={loginData.email}
-              onChange={(e: any) => { setLoginData({ ...loginData, email: e.target.value }); }}
-            />
-            <Input
-              label="Password"
-              placeholder="Enter password"
-              value={loginData.password}
-              onChange={(e: any) => { setLoginData({ ...loginData, password: e.target.value }); }}
-            />
+        <Input
+          label="E-mail"
+          placeholder="Enter your e-mail"
+          value={loginData.email}
+          onChange={(e: ChangeEvent<HTMLInputElement>) => { setLoginData({ ...loginData, email: e.target.value }); }}
+        />
+        <Input
+          label="Password"
+          placeholder="Enter password"
+          value={loginData.password}
+          onChange={(e: ChangeEvent<HTMLInputElement>) => { setLoginData({ ...loginData, password: e.target.value }); }}
+        />
         <div>
           <button type="submit">Login</button>
         </div>

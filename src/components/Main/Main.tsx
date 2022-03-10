@@ -1,17 +1,30 @@
 import React from 'react';
 import styled from 'styled-components';
+
 import { WEAK_BLUE } from '../../consts/colors';
+
+interface Props {
+  children: React.ReactNode;
+}
 
 const StyledMain = styled.main`
   flex: 1;
   background-color: ${WEAK_BLUE};
-  margin-top: 60px;
+
+  & > div {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-top: 60px;
+  }
 `;
 
-const Main = ({ children }: any): JSX.Element => {
+const Main = ({ children }: Props): JSX.Element => {
   return (
       <StyledMain>
-        {children}
+        <div>
+          {children}
+        </div>
       </StyledMain>
   );
 };

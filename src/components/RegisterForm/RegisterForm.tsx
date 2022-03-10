@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+
 import { WHITE, STEEL_GRAY } from '../../consts/colors';
 import authApi from '../../api/auth';
 import Input from '../Input';

@@ -1,6 +1,5 @@
 const pathRoutes = {
   home: '/',
-  login: '/login',
   posts: '/posts',
 };
 

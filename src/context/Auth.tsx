@@ -1,52 +1,49 @@
 
 import React, { createContext, useCallback, useEffect, useMemo, useState } from 'react';
 
-import api from '../api/auth';
+import * as api from '../api';
 
 export const AuthContext = createContext({
-  user: null,
-  setUser: (arg: any): any => {},
-  setToken: (arg: any): any => {},
+  profile: null,
+  setProfile: (arg: any): any => {},
+  setTokenToStorage: (arg: any): any => {},
   logOut: () => {},
 });
 
 export function AuthProvider(props: any) {
-  const [user, setUser] = useState(null);
+  const [profile, setProfile] = useState(null);
 
-  const setToken = useCallback((tokenData) => {
-    if (tokenData) {
-      localStorage.setItem('token', tokenData);
-    } else {
-      localStorage.removeItem('token');
-    }
+  const setTokenToStorage = useCallback((token) => {
+    if (token) localStorage.setItem('token', token);
+    else localStorage.removeItem('token');
   }, []);
 
   const logOut = useCallback(() => {
-    setUser(null);
-    setToken(null);
-  }, [setToken]);
+    setProfile(null);
+    setTokenToStorage(null);
+  }, [setTokenToStorage]);
 
   const loadData = useCallback(async () => {
-    const tokenData = localStorage.getItem('token');
+    const token = localStorage.getItem('token');
 
     try {
-      if (tokenData) {
-        const { data } = await api.getProfile();
-        setUser(data);
+      if (token) {
+        const { data } = await api.auth.getProfile();
+        setProfile(data);
       }
     } catch {
-      setToken(null);
+      setTokenToStorage(null);
     } 
-  }, [setToken]);
+  }, [setTokenToStorage]);
 
   useEffect(() => { loadData(); }, [loadData]);
 
   const contextValue = useMemo(() => ({
-    user,
-    setUser,
-    setToken,
+    profile,
+    setProfile,
+    setTokenToStorage,
     logOut,
-  }), [user, setUser, setToken, logOut]);
+  }), [profile, setProfile, setTokenToStorage, logOut]);
 
   return (
     <AuthContext.Provider value={contextValue}>

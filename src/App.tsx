@@ -23,7 +23,7 @@ const App = (): JSX.Element => {
       <Header />
       <Main>
         <Routes>
-          <Route path={pathRoutes.posts} element={auth.user ? <Posts /> : <Navigate to='/authWarning' />} />
+          <Route path={pathRoutes.posts} element={auth.profile ? <Posts /> : <Navigate to='/authWarning' />} />
         </Routes>
       </Main>
       <Footer />

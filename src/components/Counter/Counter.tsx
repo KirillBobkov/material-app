@@ -1,10 +1,11 @@
 import React from 'react';
 import { observer } from 'mobx-react-lite';
 import styled from 'styled-components';
+
 import { WHITE } from '../../consts/colors';
 
 interface Props {
-  postsLength: number;
+  count: number;
 }
 
 const StyledCounter  = styled.div`
@@ -23,10 +24,10 @@ const StyledCounter  = styled.div`
   }
 `;
 
-const Counter = ({ postsLength }: Props) => (
+const Counter = ({ count }: Props): JSX.Element => (
   <StyledCounter>
     <h6>TOTAL POSTS</h6>
-    <h1>{`${postsLength}`}</h1>
+    <h1>{`${count}`}</h1>
  </StyledCounter>
 );
 

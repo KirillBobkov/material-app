@@ -3,9 +3,9 @@ import React, { useEffect, useState } from 'react';
 import { IPost } from '../../interfaces';
 import PostsStore from '../../state/PostsStore';
 
-type Props = {
+interface Props {
   post: IPost;
-};
+}
 
 const getInitialState = (): IPost =>  {
   return {
