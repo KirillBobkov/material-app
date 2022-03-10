@@ -1,29 +1,29 @@
-import axios from 'axios';
+import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 
 const axiosInstance = axios.create();
   
 axiosInstance.interceptors.request.use(
-  (config: any) => {
+  (config: AxiosRequestConfig) => {
     const authToken = localStorage.getItem('token');
   
-    if (authToken) {
+    if (authToken && config.headers) {
       config.headers.authorization = `Bearer ${authToken}`;
     }
   
     return config;
   },
-  (error) => Promise.reject(error),
+  (error: any) => Promise.reject(error),
 );
 
 axiosInstance.interceptors.response.use(
-  (config: any) => {
+  (config: AxiosResponse) => {
     if (config.data.token) {
       localStorage.setItem('token', config.data.token);
     }
 
     return config;
   },
-  (error) => {
+  (error: any) => {
     return Promise.reject(error);
   },
 );

@@ -23,7 +23,7 @@ class PostsStore {
       const { data }: { data: IPost[] } = yield api.getPosts();
       this.posts = data.slice(0, 10);
     } catch (e: any) {
-      this.error = e;
+      this.error = e.message || 'Error while fetching post';
     }
   }
 
@@ -35,7 +35,7 @@ class PostsStore {
     
       this.posts.splice(postIndex, 1);
     } catch (e: any) {
-      this.error = e.message;
+      this.error = e.message || 'Error while deleting post';
     }
   }  
     
@@ -47,7 +47,7 @@ class PostsStore {
     
       this.posts[postIndex] = newData;
     } catch (e: any) {
-      this.error = e.message;
+      this.error = e.message || 'Error while updating post';
     }
   }   
 

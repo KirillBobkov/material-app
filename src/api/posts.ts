@@ -1,13 +1,14 @@
+import { IPost } from '../interfaces/IPost';
 import axiosInstance from './axiosInstance';
 
 class Posts {
   private baseURL = 'https://jsonplaceholder.typicode.com/posts';
 
-  public getPosts(): Promise<any> {
+  public getPosts(): Promise<IPost> {
     return axiosInstance.get(`${this.baseURL}`);
   }
 
-  public updatePost(id: string, data: any) {
+  public updatePost(id: string, data: IPost) {
     return axiosInstance.put(`${this.baseURL}/${id}`, data);
   }
 

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { RefObject, useContext, useRef } from 'react';
 import  {  useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -66,10 +66,13 @@ const StyledHeader = styled.header`
 const Header = (): JSX.Element => {
   const [authState, setAuthState] = React.useState({ login: false, register: false });
   const auth = useContext(AuthContext);
+  const loginFormRef: RefObject<HTMLDivElement> = useRef(null);
+  const registerFormRef: RefObject<HTMLDivElement>  = useRef(null);
   const navigate = useNavigate();
 
   const handleLogin = () => {
     setAuthState({ login: true, register: false });
+    if (loginFormRef && loginFormRef.current) loginFormRef.current.focus();
   };
 
   const handleLogout = () => {
@@ -79,6 +82,19 @@ const Header = (): JSX.Element => {
 
   const handleRegister = () => {
     setAuthState({ login: false, register: true }); 
+    if (registerFormRef && registerFormRef.current) registerFormRef.current.focus();
+  };
+
+  const onBlurLoginForm = (e: any) => {
+    if (!e || !e.relatedTarget) {
+      setAuthState({ login: false, register: false });
+    }
+  };
+
+  const onBlurRegisterForm = (e: any) => {
+    if (!e || !e.relatedTarget) {
+      setAuthState({ login: false, register: false });
+    }
   };
 
   return (
@@ -98,15 +114,15 @@ const Header = (): JSX.Element => {
                 : <HeaderButton  onClick={handleLogout} capture="Logout" icon={<LogoutIcon />}/>
               } 
             </Navigation>
-            {authState.login && !auth.profile && (
-              <StyledLoginFloatContainer>
-                <LoginForm />
-              </StyledLoginFloatContainer>
-            )}
-            {authState.register && !auth.profile && (
-              <StyledLoginFloatContainer>
-                <RegisterForm />
-              </StyledLoginFloatContainer>
+            {!auth.profile && (
+              <>
+                <StyledLoginFloatContainer onBlur={onBlurLoginForm} tabIndex={1} ref={loginFormRef as RefObject<HTMLDivElement> } >
+                  {authState.login && <LoginForm closeForm={onBlurRegisterForm}/>}
+                </StyledLoginFloatContainer>
+                <StyledLoginFloatContainer onBlur={onBlurRegisterForm} tabIndex={2} ref={registerFormRef as RefObject<HTMLDivElement>}>
+                  {authState.register && <RegisterForm closeForm={onBlurRegisterForm} />}
+                </StyledLoginFloatContainer>
+              </>
             )}
           </StyledLoginContainer>
         </FlexContainerSpaced>

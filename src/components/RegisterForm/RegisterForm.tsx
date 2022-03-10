@@ -4,6 +4,17 @@ import styled from 'styled-components';
 import { WHITE, STEEL_GRAY } from '../../consts/colors';
 import authApi from '../../api/auth';
 import Input from '../Input';
+import { AxiosError } from 'axios';
+import { IRegistration } from '../../interfaces/IRegistration';
+
+type Error = {
+  errors: {
+    email: string;
+    firstName: string;
+    lastName: string;
+    password: string;
+  }
+};
 
 const getInitialState = (): any =>  {
   return {
@@ -23,13 +34,23 @@ const StyledForm = styled.form`
   padding: 20px;
 `;
 
-const RegisterForm = () => {
-  const [registerData, setRegisterData] = useState<any>(getInitialState());
+const RegisterForm = (props: any) => {
+  const [registerData, setRegisterData] = useState<IRegistration>(getInitialState());
+  const [errors, setError] = useState<Error | null>(null);
 
   const onSubmit = async (e: any) => {
     e.preventDefault();
-    await authApi.register({ ...registerData });
-    setRegisterData(getInitialState());
+
+    try {
+      await authApi.register({ ...registerData });
+      setRegisterData(getInitialState());
+      props.closeForm();
+    } catch (res) {
+      const event = res as AxiosError;
+      if (event.response) {
+        setError(event.response.data.errors);
+      }
+    }
   };
 
   return (
@@ -60,6 +81,7 @@ const RegisterForm = () => {
             />
         <div>
           <button type="submit">Register</button>
+          <p style={{ color: 'red' }}>{errors && Object.values(errors).map((errorMessage, i) => <p key={i}>{errorMessage}</p>)}</p>
         </div>
       </StyledForm>
   );      

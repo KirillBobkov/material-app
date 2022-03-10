@@ -23,7 +23,7 @@ const StyledForm = styled.form`
   padding: 20px;
 `;
 
-const LoginForm = (): JSX.Element => {
+const LoginForm = (props: any): JSX.Element => {
   const [loginData, setLoginData] = useState<any>(getInitialState());
   const auth = useContext(AuthContext);
 
@@ -33,6 +33,7 @@ const LoginForm = (): JSX.Element => {
     setLoginData(getInitialState());
     auth.setTokenToStorage(res.data.token);
     auth.setProfile(res.data.user);
+    props.closeForm();
   };
 
   return (
