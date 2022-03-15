@@ -2,6 +2,7 @@ import { observer } from 'mobx-react-lite';
 import React, { useEffect, useState } from 'react';
 import { IPost } from '../../interfaces';
 import PostsStore from '../../state/PostsStore';
+import SimpleButton from '../SimpleButton';
 
 interface Props {
   post: IPost;
@@ -63,10 +64,10 @@ const Post = ({ post }: Props) => {
           </>
         }
         <div>
-          <button onClick={() => deletePost(post.id)}>Delete post</button>
-          {!isEditing && <button onClick={onEditPost}>Edit post</button>}
-          {isEditing && <button onClick={onSaveChanges}>Save changes</button>}
-          {isEditing && <button  onClick={onCancelEditing}>Cancel changes</button>}
+          <SimpleButton type="button" onClick={() => deletePost(post.id)} capture='Delete post'/>
+          {!isEditing && <SimpleButton type="button" onClick={onEditPost} capture='Edit post'/>}
+          {isEditing && <SimpleButton type="button" onClick={onSaveChanges} capture='Save post'/>}
+          {isEditing && <SimpleButton type="button"  onClick={onCancelEditing} capture='Cancel changes'/>}
         </div>
       </li>
   );

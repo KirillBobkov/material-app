@@ -6,6 +6,7 @@ import authApi from '../../api/auth';
 import Input from '../Input';
 import { AxiosError } from 'axios';
 import { IRegistration } from '../../interfaces/IRegistration';
+import SimpleButton from '../SimpleButton';
 
 type Error = {
   errors: {
@@ -32,6 +33,8 @@ const StyledForm = styled.form`
   border: 1px solid ${STEEL_GRAY};
   box-sizing: border-box;
   padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  border-radius: 10px;
 `;
 
 const RegisterForm = (props: any) => {
@@ -80,7 +83,7 @@ const RegisterForm = (props: any) => {
               onChange={(e: any) => { setRegisterData({ ...registerData, password: e.target.value }); }}
             />
         <div>
-          <button type="submit">Register</button>
+          <SimpleButton capture="Sign up" type="submit" onClick={() => {}}/>
           <p style={{ color: 'red' }}>{errors && Object.values(errors).map((errorMessage, i) => <p key={i}>{errorMessage}</p>)}</p>
         </div>
       </StyledForm>

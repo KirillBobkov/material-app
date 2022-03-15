@@ -6,6 +6,7 @@ import { WHITE, STEEL_GRAY } from '../../consts/colors';
 import { AuthContext } from '../../context/Auth';
 import authApi from '../../api/auth';
 import Input from '../Input';
+import SimpleButton from '../SimpleButton';
 
 const getInitialState = (): any =>  {
   return {
@@ -21,6 +22,8 @@ const StyledForm = styled.form`
   border: 1px solid ${STEEL_GRAY};
   box-sizing: border-box;
   padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  border-radius: 10px;
 `;
 
 const LoginForm = (props: any): JSX.Element => {
@@ -51,7 +54,7 @@ const LoginForm = (props: any): JSX.Element => {
           onChange={(e: ChangeEvent<HTMLInputElement>) => { setLoginData({ ...loginData, password: e.target.value }); }}
         />
         <div>
-          <button type="submit">Login</button>
+          <SimpleButton capture="Sign In" type="submit" onClick={() => {}}/>
         </div>
       </StyledForm>
   );      

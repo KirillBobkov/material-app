@@ -1,15 +1,13 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { observer } from 'mobx-react-lite';
 
 import PostsStore from '../../state/PostsStore';
 import { IPost } from '../../interfaces';
-import { AuthContext } from '../../context/Auth';
 
 import Counter from '../Counter';
 import Post from '../Post';
 
 const Posts = () => {
-  const auth = useContext(AuthContext);
   const { 
     fetchPosts,
     postsLength,
@@ -21,20 +19,15 @@ const Posts = () => {
   
   return (
     <div style={{ padding: '20px', maxWidth: '1300px' }}>
-      {auth.profile 
-        ?
-          <>
-            <Counter count={postsLength} />
-              {error && <div>{JSON.stringify(error)}</div>}
-              {posts.length 
-                ? 
-                  <ul style={{ listStyle: 'none', padding: 0 }}>
-                    {posts.map((post: IPost) => <Post key={post.id} post={post} />)}
-                  </ul>
-                : <div>loading</div>  
-              }
-          </>
-        : <div>You need to auth</div>}
+      {!!postsLength && <Counter count={postsLength} />}
+      {error && <div>{JSON.stringify(error)}</div>}
+      {posts.length 
+        ? 
+          <ul style={{ listStyle: 'none', padding: 0 }}>
+            {posts.map((post: IPost) => <Post key={post.id} post={post} />)}
+          </ul>
+        : <div>loading</div>  
+      }
     </div>
   );
 };

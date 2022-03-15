@@ -15,6 +15,7 @@ const StyledInput = styled.input`
   padding: 10px;
   width: 100%;
   margin-bottom: 20px;
+  border-radius: 10px;
 
   &:focus {
     outline: 1px solid ${BLUE};

@@ -47,8 +47,12 @@ const StyledLoginContainer = styled.div`
 
 const StyledLoginFloatContainer = styled.div`
   position: absolute;
-  top: 59px;
+  top: 62px;
   right: 0;
+  
+  &:focus {
+    outline: 1px solid transparent;
+  }
 `;
 
 const StyledHeader = styled.header`
@@ -108,8 +112,8 @@ const Header = (): JSX.Element => {
             <Navigation>
               {!auth.profile 
                 ? <>
-                    <HeaderButton  onClick={handleLogin} capture="Login" icon={<AccountCircleIcon />}/>
-                    <HeaderButton onClick={handleRegister} capture="Register" icon={<AppRegistrationIcon />}/>
+                    <HeaderButton onClick={handleLogin} capture="Sign In" icon={<AccountCircleIcon />}/>
+                    <HeaderButton onClick={handleRegister} capture="Sign Up" icon={<AppRegistrationIcon />}/>
                   </>
                 : <HeaderButton  onClick={handleLogout} capture="Logout" icon={<LogoutIcon />}/>
               } 
