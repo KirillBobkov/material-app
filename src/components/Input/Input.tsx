@@ -1,17 +1,14 @@
-import React, { ChangeEvent } from 'react';
+import React, { HTMLAttributes } from 'react';
 import styled from 'styled-components';
 
-import { STEEL_GRAY, BLUE } from '../../consts/colors';
-
-interface Props {
+type Props = {
   label: string;
   value: string;
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   placeholder: string;
-}
+} & HTMLAttributes<HTMLInputElement>;
 
 const StyledInput = styled.input`
-  border: 1px solid ${STEEL_GRAY};
+  border: 1px solid gray;
   padding: 10px;
   width: 100%;
   margin-bottom: 20px;
@@ -31,16 +28,11 @@ const StyledLabel = styled.label`
   }
 `;
 
-const Input = ({ label, value, onChange, placeholder }: Props): JSX.Element => {
+const Input = ({ label, placeholder, ...attrs }: Props): JSX.Element => {
   return (
     <StyledLabel>
       <span>{label}</span>
-      <StyledInput 
-        placeholder={placeholder}
-        type="text"  
-        value={value}
-        onChange={onChange} 
-      />
+      <StyledInput placeholder={placeholder} {...attrs} />
     </StyledLabel>
   );
 };

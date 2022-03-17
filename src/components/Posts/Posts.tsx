@@ -6,8 +6,9 @@ import { IPost } from '../../interfaces';
 
 import Counter from '../Counter';
 import Post from '../Post';
+import Spinner from '../Spinner';
 
-const Posts = () => {
+const Posts = (): JSX.Element => {
   const { 
     fetchPosts,
     postsLength,
@@ -15,7 +16,9 @@ const Posts = () => {
     posts,
   } = PostsStore;
   
-  useEffect(() => { fetchPosts(); }, []);
+  useEffect((): void => { 
+    fetchPosts(); 
+  }, []);
   
   return (
     <div style={{ padding: '20px', maxWidth: '1300px' }}>
@@ -24,9 +27,9 @@ const Posts = () => {
       {posts.length 
         ? 
           <ul style={{ listStyle: 'none', padding: 0 }}>
-            {posts.map((post: IPost) => <Post key={post.id} post={post} />)}
+            {posts.map((post: IPost ): JSX.Element => <Post key={post.id} post={post} />)}
           </ul>
-        : <div>loading</div>  
+        :  <Spinner size={50} /> 
       }
     </div>
   );

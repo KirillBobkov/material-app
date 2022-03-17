@@ -1,21 +1,13 @@
-import React, { RefObject, useContext, useRef } from 'react';
+import React, { RefObject, useRef } from 'react';
 import  {  useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
-import LogoutIcon from '@mui/icons-material/Logout';
-import PagesIcon from '@mui/icons-material/Pages';
-import HomeIcon from '@mui/icons-material/Home';
-
-import { AuthContext } from '../../context/Auth';
-
 import pathRoutes from '../../consts/pathRoutes';
-import { STEEL_GRAY, BLUE, WHITE } from '../../consts/colors';
 
 import RegisterForm from '../RegisterForm';
-import HeaderButton from '../HeaderButton';
 import LoginForm from '../LoginForm';
+import { observer } from 'mobx-react-lite';
+import AuthStore from '../../state/AuthStore';
 
 const Navigation = styled.nav`
   display: flex;
@@ -27,28 +19,21 @@ const Navigation = styled.nav`
 `;
 
 const FlexContainerSpaced = styled.div`
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 100%;
 `;
 
-const StyledLoginContainer = styled.div`
+const RelativeContainer = styled.div`
   position: relative;
-  color: ${WHITE};
-  height: 100%;
-
-  & > div {
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-  }
 `;
 
-const StyledLoginFloatContainer = styled.div`
+const AbsoluteContainer = styled.div`
   position: absolute;
   top: 70px;
-  right: 0;
+  right: 0px;
   
   &:focus {
     outline: 1px solid transparent;
@@ -66,35 +51,56 @@ const StyledHeader = styled.header`
   background: #000000;
 `;
 
+const StyledHeaderButton  = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 30px;
+  flex: 1 1 auto;
+  cursor: pointer;
+  color: #ffffff;
+  height: 100%;
+  transition: opacity .5s;
+
+  &:hover {
+    opacity: 0.5;
+  }
+
+  span {
+    text-decoration: none;
+    color: inherit;
+  }
+`;
+
+type AuthState = { login: boolean; register: boolean };
+
 const Header = (): JSX.Element => {
-  const [authState, setAuthState] = React.useState({ login: false, register: false });
-  const auth = useContext(AuthContext);
+  const [authState, setAuthState] = React.useState<AuthState>({ login: false, register: false });
   const loginFormRef: RefObject<HTMLDivElement> = useRef(null);
   const registerFormRef: RefObject<HTMLDivElement>  = useRef(null);
   const navigate = useNavigate();
 
-  const handleLogin = () => {
+  const handleLogin = (): void => {
     setAuthState({ login: true, register: false });
     if (loginFormRef && loginFormRef.current) loginFormRef.current.focus();
   };
 
-  const handleLogout = () => {
+  const handleLogout = (): void => {
     setAuthState({ login: false, register: false }); 
-    auth.logOut(); 
+    AuthStore.logOut(); 
   };
 
-  const handleRegister = () => {
+  const handleRegister = (): void => {
     setAuthState({ login: false, register: true }); 
     if (registerFormRef && registerFormRef.current) registerFormRef.current.focus();
   };
 
-  const onBlurLoginForm = (e: any) => {
+  const onBlurLoginForm = (e: any ): void => {
     if (!e || !e.relatedTarget) {
       setAuthState({ login: false, register: false });
     }
   };
 
-  const onBlurRegisterForm = (e: any) => {
+  const onBlurRegisterForm = (e: any ): void => {
     if (!e || !e.relatedTarget) {
       setAuthState({ login: false, register: false });
     }
@@ -104,33 +110,39 @@ const Header = (): JSX.Element => {
       <StyledHeader>
         <FlexContainerSpaced>
           <Navigation>
-            <HeaderButton onClick={() => navigate(pathRoutes.home)} capture="Home"/>
-            <HeaderButton onClick={() => navigate(pathRoutes.posts)} capture="Posts"/>
+            <StyledHeaderButton onClick={(): void => navigate(pathRoutes.home)}>Home</StyledHeaderButton>
+            <StyledHeaderButton onClick={(): void => navigate(pathRoutes.posts)}>Posts</StyledHeaderButton>
           </Navigation>
-          <StyledLoginContainer>
-            <Navigation>
-              {!auth.profile 
+          <Navigation>
+              {!AuthStore.profile 
                 ? <>
-                    <HeaderButton onClick={handleLogin} capture="Sign In" />
-                    <HeaderButton onClick={handleRegister} capture="Sign Up" />
+                    <RelativeContainer>
+                      <StyledHeaderButton onClick={handleLogin}>Sign In</StyledHeaderButton>
+                      <AbsoluteContainer 
+                        onBlur={onBlurLoginForm} 
+                        tabIndex={1} 
+                        ref={loginFormRef as RefObject<HTMLDivElement>} 
+                      >
+                        {authState.login && <LoginForm closeForm={onBlurRegisterForm}/>}
+                      </AbsoluteContainer>
+                    </RelativeContainer>
+                    <RelativeContainer>
+                    <StyledHeaderButton onClick={handleRegister}>Sign Up</StyledHeaderButton>
+                      <AbsoluteContainer 
+                        onBlur={onBlurRegisterForm} 
+                        tabIndex={2} 
+                        ref={registerFormRef as RefObject<HTMLDivElement>}
+                      >
+                        {authState.register && <RegisterForm closeForm={onBlurRegisterForm} />}
+                      </AbsoluteContainer>
+                    </RelativeContainer>
                   </>
-                : <HeaderButton onClick={handleLogout} capture="Logout"/>
+                : <StyledHeaderButton onClick={handleLogout}>Logout</StyledHeaderButton>
               } 
-            </Navigation>
-            {!auth.profile && (
-              <>
-                <StyledLoginFloatContainer onBlur={onBlurLoginForm} tabIndex={1} ref={loginFormRef as RefObject<HTMLDivElement> } >
-                  {authState.login && <LoginForm closeForm={onBlurRegisterForm}/>}
-                </StyledLoginFloatContainer>
-                <StyledLoginFloatContainer onBlur={onBlurRegisterForm} tabIndex={2} ref={registerFormRef as RefObject<HTMLDivElement>}>
-                  {authState.register && <RegisterForm closeForm={onBlurRegisterForm} />}
-                </StyledLoginFloatContainer>
-              </>
-            )}
-          </StyledLoginContainer>
+          </Navigation>
         </FlexContainerSpaced>
       </StyledHeader>
   );
 };
 
-export default Header;
+export default observer(Header);

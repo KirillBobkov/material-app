@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import { WHITE, STEEL_GRAY } from '../../consts/colors';
 import authApi from '../../api/auth';
 import Input from '../Input';
 import { AxiosError } from 'axios';
 import { IRegistration } from '../../interfaces/IRegistration';
-import SimpleButton from '../SimpleButton';
+import Button from '../Button';
+import Spinner from '../Spinner';
 
 type Error = {
   errors: {
@@ -29,19 +29,21 @@ const getInitialState = (): any =>  {
 const StyledForm = styled.form`
   min-height: 230px;
   width: 300px;
-  background: ${WHITE};
-  border: 1px solid ${STEEL_GRAY};
+  background: #ffffff;
+  border: 1px solid gray;
   box-sizing: border-box;
   padding: 20px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 `;
 
-const RegisterForm = (props: any) => {
+const RegisterForm = (props: any ): JSX.Element  => {
   const [registerData, setRegisterData] = useState<IRegistration>(getInitialState());
   const [errors, setError] = useState<Error | null>(null);
+  const [isFetching, setFetching] = useState<boolean>(false);
 
-  const onSubmit = async (e: any) => {
+  const onSubmit = async (e: any ): Promise<any> => {
     e.preventDefault();
+    setFetching(true);
 
     try {
       await authApi.register({ ...registerData });
@@ -52,6 +54,8 @@ const RegisterForm = (props: any) => {
       if (event.response) {
         setError(event.response.data.errors);
       }
+    } finally {
+      setFetching(false);
     }
   };
 
@@ -61,30 +65,31 @@ const RegisterForm = (props: any) => {
               label="First name"
               value={registerData.firstName}
               placeholder="Enter your first name"
-              onChange={(e: any) => { setRegisterData({ ...registerData, firstName: e.target.value }); }}
+              onChange={(e: any ): void => { setRegisterData({ ...registerData, firstName: e.target.value }); }}
             />
             <Input
               label="Last name"
               placeholder="Enter your last name"
               value={registerData.lastName}
-              onChange={(e: any) => { setRegisterData({ ...registerData, lastName: e.target.value }); }}
+              onChange={(e: any ): void => { setRegisterData({ ...registerData, lastName: e.target.value }); }}
             />
             <Input
               label="E-mail"
               value={registerData.email}
               placeholder="Enter your e-mail"
-              onChange={(e: any) => { setRegisterData({ ...registerData, email: e.target.value }); }}
+              onChange={(e: any ): void => { setRegisterData({ ...registerData, email: e.target.value }); }}
             />
             <Input
               label="Password"
               value={registerData.password}
               placeholder="Enter your password"
-              onChange={(e: any) => { setRegisterData({ ...registerData, password: e.target.value }); }}
+              onChange={(e: any ): void => { setRegisterData({ ...registerData, password: e.target.value }); }}
             />
         <div>
-          <SimpleButton capture="Sign up" type="submit" onClick={() => {}}/>
-          <p style={{ color: 'red' }}>{errors && Object.values(errors).map((errorMessage, i) => <p key={i}>{errorMessage}</p>)}</p>
+          <Button>Sign up</Button>
+          <p style={{ color: 'red' }}>{errors && Object.values(errors).map((errorMessage, i ): JSX.Element => <p key={i}>{errorMessage}</p>)}</p>
         </div>
+        {isFetching && <Spinner size={50} />}
       </StyledForm>
   );      
 };

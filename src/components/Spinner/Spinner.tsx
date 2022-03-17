@@ -1,6 +1,9 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
-import { BLUE } from '../../consts/colors';
+
+interface Props {
+  size: number;
+}
 
 const rotate = keyframes`
   from {
@@ -12,43 +15,35 @@ const rotate = keyframes`
   }
 `;
 
-const StyledSpinner = styled.div`
+const StyledSpinner = styled.div<Props>`
   &, &::before, &::after {
     content:'';
     display:block;
     border: 4px solid transparent;
     border-radius: 50%;
-    animation: ${rotate} infinite linear 2s;
+    animation: ${rotate} infinite linear 1s;
     position: absolute;
   }
 
-    width:100px;
-    height:100px;
-    border-top-color: ${BLUE};
-    top:calc(50% - 50px);
-    left:calc(50% - 50px);
+    width:${props => props.size}px;
+    height:${props => props.size}px;
+    border-top-color: black;
+    top:calc(50% - 25px);
+    left:calc(50% - ${props => props.size * 0.5}px);
 
   &::before{
-    border-top-color: ${BLUE};
+    border-top-color: black;
     animation-duration:4s;
     top:2px;
     bottom:2px;
     left:2px;
     right:2px;
   }
-
-  &::after{
-    border-top-color: ${BLUE};
-    top:8px;
-    bottom:8px;
-    left:8px;
-    right:8px;
-  }
 `;
 
 
-const Spinner = (): JSX.Element => {
-  return <StyledSpinner className="spinner" />;
+const Spinner = ({ size }: Props): JSX.Element => {
+  return <StyledSpinner size={size} className="spinner" />;
 };
 
 export default Spinner;

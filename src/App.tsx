@@ -1,28 +1,28 @@
-import React, { useContext } from 'react';
-import  { Routes, Route, Navigate } from 'react-router-dom';
-import styled from 'styled-components';
-import { WEAK_BLUE } from './consts/colors';
+import React from 'react';
+import  { Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
-import { AuthContext } from './context/Auth';
 import Main from './components/Main/Main';
 import pathRoutes from './consts/pathRoutes';
 import Spinner from './components/Spinner';
 import SquareImagesCarousel from './components/SquareImagesCarousel';
 import Quote from './components/Quote';
+import { observer } from 'mobx-react-lite';
+import AuthStore from './state/AuthStore';
 
 const NotFound = React.lazy(() => import('./pages/NotFound'));
 const Posts = React.lazy(() => import('./components/Posts'));
+const NotAuthorized = React.lazy(() => import('./pages/NotAuthorized'));
 
 const WithFallback = ({ children }: any): JSX.Element => {
-  return <React.Suspense fallback={<Spinner />}>{children}</React.Suspense>;
+  return <React.Suspense fallback={<Spinner size={50} />}>{children}</React.Suspense>;
 };
 
 const App = (): JSX.Element => {
-  const auth = useContext(AuthContext);
 
   return (
     <>
       <Header />
+      
       <Main>
         <Routes>
           <Route path='/' element={
@@ -68,7 +68,7 @@ const App = (): JSX.Element => {
             <Quote author='May Robins' quote='Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt, explicabo. Nemo enim ipsam voluptatem, quia voluptas sit, aspernatur aut odit aut fugit, sed quia consequuntur' />
           </>
         }/>
-          {auth.profile && <Route path={pathRoutes.posts} element={<WithFallback><Posts /></WithFallback>} />}
+          <Route path={pathRoutes.posts} element={AuthStore.profile ? <WithFallback><Posts /></WithFallback> : <WithFallback><NotAuthorized /></WithFallback>} />
           <Route path='*' element={<WithFallback><NotFound /></WithFallback>} />
         </Routes>
       </Main>
@@ -76,4 +76,4 @@ const App = (): JSX.Element => {
   );
 };
 
-export default App;
+export default observer(App);

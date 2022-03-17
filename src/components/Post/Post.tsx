@@ -1,8 +1,11 @@
 import { observer } from 'mobx-react-lite';
 import React, { useEffect, useState } from 'react';
+
 import { IPost } from '../../interfaces';
+
 import PostsStore from '../../state/PostsStore';
-import SimpleButton from '../SimpleButton';
+
+import Button from '../Button';
 
 interface Props {
   post: IPost;
@@ -17,14 +20,14 @@ const getInitialState = (): IPost =>  {
   };
 };
 
-const Post = ({ post }: Props) => {
+const Post = ({ post }: Props ): JSX.Element => {
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [currentPost, setCurrentPost] = useState<IPost>(getInitialState());
   const { deletePost, updatePost } = PostsStore;
 
   useEffect((): void => setCurrentPost({ ...post }), [post]);
 
-  const onSaveChanges = async () => {
+  const onSaveChanges = async (): Promise<any> => {
     await updatePost(post.id, currentPost);
     setIsEditing(!isEditing);
   };
@@ -33,7 +36,7 @@ const Post = ({ post }: Props) => {
     setIsEditing(!isEditing);
   };
 
-  const onCancelEditing = () => {
+  const onCancelEditing = (): void => {
     setIsEditing(!isEditing);
     setCurrentPost({ ...currentPost, title: post.title, body: post.body });
   };
@@ -44,11 +47,11 @@ const Post = ({ post }: Props) => {
           <>
             <textarea
               value={currentPost.title}
-              onChange={(e: any) => {  setCurrentPost({ ...currentPost, title: e.target.value }); }}
+              onChange={(e: any ): void => {  setCurrentPost({ ...currentPost, title: e.target.value }); }}
             />
             <textarea
               value={currentPost.body}
-              onChange={(e: any) => { setCurrentPost({ ...currentPost, body: e.target.value }); }}
+              onChange={(e: any ): void => { setCurrentPost({ ...currentPost, body: e.target.value }); }}
             />
           </>
           :
@@ -64,10 +67,10 @@ const Post = ({ post }: Props) => {
           </>
         }
         <div>
-          <SimpleButton type="button" onClick={() => deletePost(post.id)} capture='Delete post'/>
-          {!isEditing && <SimpleButton type="button" onClick={onEditPost} capture='Edit post'/>}
-          {isEditing && <SimpleButton type="button" onClick={onSaveChanges} capture='Save post'/>}
-          {isEditing && <SimpleButton type="button"  onClick={onCancelEditing} capture='Cancel changes'/>}
+          <Button onClick={() => deletePost(post.id)}>Delete post</Button>
+          {!isEditing && <Button onClick={onEditPost}>Edit post</Button>}
+          {isEditing && <Button onClick={onSaveChanges}>Save post</Button>}
+          {isEditing && <Button onClick={onCancelEditing}>Cancel changes</Button>}
         </div>
       </li>
   );

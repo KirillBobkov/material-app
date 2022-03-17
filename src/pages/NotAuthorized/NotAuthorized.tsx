@@ -17,14 +17,15 @@ const StyledP = styled.h2`
   color: black;
 `;
 
-const NotFound = (): JSX.Element => {
+const NotAuthorized = (): JSX.Element => {
   return <>
-        <StyledH1>404</StyledH1>
-        <StyledP>OOOOPS! WE COULD’T FIND THIS PAGE!</StyledP>
-        <StyledP>It could have been deleted or never have existed. But you always can go to the home page.</StyledP>
+        <StyledH1>402</StyledH1>
+        <StyledP>Sorry, you currently don&apos;t have permission to access this page.</StyledP>
+        <StyledP>Please, authorize of register to get an access.</StyledP>
+
   </>;
 };
 
-export default NotFound;
+export default NotAuthorized;
 
 

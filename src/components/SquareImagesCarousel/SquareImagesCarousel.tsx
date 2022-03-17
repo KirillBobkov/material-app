@@ -110,7 +110,7 @@ export default function SquareImagesCarousel({ cards, cardSize }: Props) {
   const GAP = 40;
   const carouselRef = useRef<HTMLDivElement | null>(null);
 
-  const makeScroll = (direction: number) => {
+  const makeScroll = (direction: number ): void => {
     if (carouselRef.current) {
       const { scrollLeft, offsetWidth,  scrollWidth } = carouselRef.current;
       const cardWidth = cardSize + GAP;
@@ -132,12 +132,12 @@ export default function SquareImagesCarousel({ cards, cardSize }: Props) {
       <Sqimс style={{ height: `${cardSize}px` }} >
         <RowContainer>
           <Row ref={carouselRef}>
-            {cards.map((card: any) => <Card key={card.background} style={{ backgroundImage: `url(${card.background})` }}/>)}
+            {cards.map((card: any ): JSX.Element => <Card key={card.background} style={{ backgroundImage: `url(${card.background})` }}/>)}
           </Row>
         </RowContainer>
         <Actions>
-          <ArrowLeft onClick={() => makeScroll(-1)} />
-          <ArrowRight onClick={() => makeScroll(1)} />
+          <ArrowLeft onClick={(): void => makeScroll(-1)} />
+          <ArrowRight onClick={(): void => makeScroll(1)} />
         </Actions>
       </Sqimс>
   );

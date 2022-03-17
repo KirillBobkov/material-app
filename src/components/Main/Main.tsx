@@ -1,8 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { WEAK_BLUE } from '../../consts/colors';
-
 interface Props {
   children: React.ReactNode;
 }

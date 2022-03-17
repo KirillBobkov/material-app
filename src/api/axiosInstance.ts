@@ -1,9 +1,9 @@
-import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
+import axios, { AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
 
 const axiosInstance = axios.create();
   
 axiosInstance.interceptors.request.use(
-  (config: AxiosRequestConfig) => {
+  (config: AxiosRequestConfig ): AxiosRequestConfig => {
     const authToken = localStorage.getItem('token');
   
     if (authToken && config.headers) {
@@ -12,18 +12,18 @@ axiosInstance.interceptors.request.use(
   
     return config;
   },
-  (error: any) => Promise.reject(error),
+  (error: any ): Promise<AxiosError> => Promise.reject(error),
 );
 
 axiosInstance.interceptors.response.use(
-  (config: AxiosResponse) => {
+  (config: AxiosResponse): AxiosResponse => {
     if (config.data.token) {
       localStorage.setItem('token', config.data.token);
     }
 
     return config;
   },
-  (error: any) => {
+  (error: any ): Promise<AxiosError> => {
     return Promise.reject(error);
   },
 );
