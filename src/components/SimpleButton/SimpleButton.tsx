@@ -6,20 +6,18 @@ interface Props {
   capture: string;
   isDisabled?: boolean;
   onClick: (arg: React.MouseEvent) => void;
-  type: 'button' | 'submit';
+  type: 'button' | 'submit' | 'reset';
 }
 
 const StyledButton = styled.button`
   max-width: 90%;
   padding: 10px 20px;
-  border-radius: 5px;
-  font-weight: 700;
   font-size: 14px;
   line-height: 16px;
   text-align: center;
   letter-spacing: 0.1em;
   color: white;
-  background: ${BLUE};
+  background: #000000;
   cursor: pointer;
   border: none;
   overflow: hidden;
@@ -28,11 +26,9 @@ const StyledButton = styled.button`
   margin-right: 10px;
 
   &:active {
-    background: ${BLUE};
   }
 
   &:focus {  
-    background: ${BLUE};
     outline: 1px solid transparent;
   }
 
@@ -42,12 +38,13 @@ const StyledButton = styled.button`
   }
 `;
 
-const SimpleButton = ({ capture, type, isDisabled, onClick }: Props) => {
+const SimpleButton = ({ capture, type, isDisabled, onClick, ...attrs }: Props) => {
   return (
     <StyledButton
       type={type}
       onClick={onClick}
 			disabled={isDisabled}
+      {...attrs}
     >
       {capture}
     </StyledButton>

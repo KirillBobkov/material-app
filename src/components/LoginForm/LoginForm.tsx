@@ -7,6 +7,7 @@ import { AuthContext } from '../../context/Auth';
 import authApi from '../../api/auth';
 import Input from '../Input';
 import SimpleButton from '../SimpleButton';
+import { AxiosError } from 'axios';
 
 const getInitialState = (): any =>  {
   return {
@@ -23,20 +24,28 @@ const StyledForm = styled.form`
   box-sizing: border-box;
   padding: 20px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
-  border-radius: 10px;
 `;
 
 const LoginForm = (props: any): JSX.Element => {
   const [loginData, setLoginData] = useState<any>(getInitialState());
   const auth = useContext(AuthContext);
+  const [errors, setError] = useState<Error | null>(null);
 
   const onSubmit = async (e: any) => {
     e.preventDefault();
-    const res = await authApi.login({ ...loginData });
-    setLoginData(getInitialState());
-    auth.setTokenToStorage(res.data.token);
-    auth.setProfile(res.data.user);
-    props.closeForm();
+  
+    try {
+      const res = await authApi.login({ ...loginData });
+      setLoginData(getInitialState());
+      auth.setTokenToStorage(res.data.token);
+      auth.setProfile(res.data.user);
+      props.closeForm();
+    } catch (res) {
+      const event = res as AxiosError;
+      if (event.response) {
+        setError(event.response.data.errors);
+      }
+    }
   };
 
   return (
@@ -55,6 +64,7 @@ const LoginForm = (props: any): JSX.Element => {
         />
         <div>
           <SimpleButton capture="Sign In" type="submit" onClick={() => {}}/>
+          <p style={{ color: 'red' }}>{errors && Object.values(errors).map((errorMessage, i) => <p key={i}>{errorMessage}</p>)}</p>
         </div>
       </StyledForm>
   );      

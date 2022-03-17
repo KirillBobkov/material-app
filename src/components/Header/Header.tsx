@@ -47,7 +47,7 @@ const StyledLoginContainer = styled.div`
 
 const StyledLoginFloatContainer = styled.div`
   position: absolute;
-  top: 62px;
+  top: 70px;
   right: 0;
   
   &:focus {
@@ -60,11 +60,10 @@ const StyledHeader = styled.header`
   top: 0px;
   left: 0;
   right: 0;
-  height: 60px;
+  height: 80px;
   padding: 0 20px;
-  background-color: ${BLUE};
-  border-bottom: 1px solid ${STEEL_GRAY};
   z-index: 100;
+  background: #000000;
 `;
 
 const Header = (): JSX.Element => {
@@ -105,17 +104,17 @@ const Header = (): JSX.Element => {
       <StyledHeader>
         <FlexContainerSpaced>
           <Navigation>
-            <HeaderButton onClick={() => navigate(pathRoutes.home)} capture="Home" icon={<HomeIcon />}/>
-            <HeaderButton onClick={() => navigate(pathRoutes.posts)} capture="Posts" icon={ <PagesIcon />}/>
+            <HeaderButton onClick={() => navigate(pathRoutes.home)} capture="Home"/>
+            <HeaderButton onClick={() => navigate(pathRoutes.posts)} capture="Posts"/>
           </Navigation>
           <StyledLoginContainer>
             <Navigation>
               {!auth.profile 
                 ? <>
-                    <HeaderButton onClick={handleLogin} capture="Sign In" icon={<AccountCircleIcon />}/>
-                    <HeaderButton onClick={handleRegister} capture="Sign Up" icon={<AppRegistrationIcon />}/>
+                    <HeaderButton onClick={handleLogin} capture="Sign In" />
+                    <HeaderButton onClick={handleRegister} capture="Sign Up" />
                   </>
-                : <HeaderButton  onClick={handleLogout} capture="Logout" icon={<LogoutIcon />}/>
+                : <HeaderButton onClick={handleLogout} capture="Logout"/>
               } 
             </Navigation>
             {!auth.profile && (

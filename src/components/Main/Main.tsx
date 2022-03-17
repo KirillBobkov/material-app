@@ -9,13 +9,11 @@ interface Props {
 
 const StyledMain = styled.main`
   flex: 1;
-  background-color: ${WEAK_BLUE};
+  margin-top: 80px;
 
   & > div {
     width: 100%;
-    max-width: 1200px;
     margin: 0 auto;
-    margin-top: 60px;
   }
 `;
 

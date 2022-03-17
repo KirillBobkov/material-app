@@ -15,10 +15,10 @@ const StyledInput = styled.input`
   padding: 10px;
   width: 100%;
   margin-bottom: 20px;
-  border-radius: 10px;
+  font-size: 14px;
 
   &:focus {
-    outline: 1px solid ${BLUE};
+    outline: 1px solid #000000;
   }
 `;
 
@@ -26,7 +26,8 @@ const StyledLabel = styled.label`
   span {
     display: inline-block;
     margin-bottom: 5px;
-    color: ${BLUE};
+    color: #000000;
+    font-size: 14px;
   }
 `;
 
