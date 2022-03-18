@@ -12,6 +12,7 @@ const StyledCounter  = styled.div`
   padding: 20px;
   background-color: #ffffff;
   justify-content: center;
+  align-items: center;
   
   h6, h1 {
     margin: 0;

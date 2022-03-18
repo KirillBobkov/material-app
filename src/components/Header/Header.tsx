@@ -32,7 +32,7 @@ const RelativeContainer = styled.div`
 
 const AbsoluteContainer = styled.div`
   position: absolute;
-  top: 70px;
+  top: 55px;
   right: 0px;
   
   &:focus {
@@ -45,7 +45,7 @@ const StyledHeader = styled.header`
   top: 0px;
   left: 0;
   right: 0;
-  height: 80px;
+  height: 60px;
   padding: 0 20px;
   z-index: 100;
   background: #000000;
@@ -54,7 +54,7 @@ const StyledHeader = styled.header`
 const StyledHeaderButton  = styled.div`
   display: flex;
   align-items: center;
-  padding: 30px;
+  padding: 20px;
   flex: 1 1 auto;
   cursor: pointer;
   color: #ffffff;

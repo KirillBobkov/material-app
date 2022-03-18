@@ -4,7 +4,8 @@ import styled from 'styled-components';
 const StyledH1 = styled.h1`
   text-align: center;
   margin: 0;
-  font-size: 20vh;
+  margin-top: 10vh;
+  font-size: 10vh;
   color: black;
 `;
 
@@ -19,9 +20,9 @@ const StyledP = styled.h2`
 
 const NotAuthorized = (): JSX.Element => {
   return <>
-        <StyledH1>402</StyledH1>
+        <StyledH1>403 Forbidden</StyledH1>
         <StyledP>Sorry, you currently don&apos;t have permission to access this page.</StyledP>
-        <StyledP>Please, authorize of register to get an access.</StyledP>
+        <StyledP>Please, sign in or sing up to get an access.</StyledP>
 
   </>;
 };

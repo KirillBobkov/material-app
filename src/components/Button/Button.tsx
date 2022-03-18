@@ -1,9 +1,11 @@
 import React, { HTMLAttributes, PropsWithChildren } from 'react';
 import styled from 'styled-components';
 
-type Props = PropsWithChildren<HTMLAttributes<HTMLButtonElement>>;
+type Props = {
+  color?: string;
+} & HTMLAttributes<HTMLButtonElement>;
 
-const StyledButton = styled.button`
+const StyledButton = styled.button<Props>`
   max-width: 90%;
   padding: 10px 20px;
   font-size: 14px;
@@ -11,13 +13,14 @@ const StyledButton = styled.button`
   text-align: center;
   letter-spacing: 0.1em;
   color: white;
-  background: #000000;
+  background: ${(props) => props.color || '#000'};
   cursor: pointer;
   border: none;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
   margin-right: 10px;
+  margin-bottom: 10px;
 
   &:active {
   }
@@ -32,9 +35,9 @@ const StyledButton = styled.button`
   }
 `;
 
-const Button = ({ children, ...attrs }: Props ): JSX.Element => {
+const Button = ({ color, children, ...attrs }: PropsWithChildren<Props> ): JSX.Element => {
   return (
-    <StyledButton {...attrs}>{children}</StyledButton>
+    <StyledButton color={color} {...attrs}>{children}</StyledButton>
   );
 };
 

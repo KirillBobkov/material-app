@@ -7,7 +7,7 @@ interface Props {
 
 const StyledMain = styled.main`
   flex: 1;
-  margin-top: 80px;
+  margin-top: 60px;
 
   & > div {
     width: 100%;

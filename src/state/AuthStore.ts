@@ -4,9 +4,12 @@ import * as api from '../api';
 class AuthStore {
   public profile: any = null;
 
+  public isLoading = true;
+
   constructor() {
     makeObservable(this, {
       profile: observable,
+      isLoading: observable,
       loadData: flow.bound,
       setTokenToStorage: action,
       logOut: action,
@@ -40,7 +43,9 @@ class AuthStore {
       }
     } catch {
 
-    } 
+    } finally {
+      this.isLoading = false;
+    }
   }
 }
 

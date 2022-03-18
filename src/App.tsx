@@ -11,7 +11,6 @@ import AuthStore from './state/AuthStore';
 
 const NotFound = React.lazy(() => import('./pages/NotFound'));
 const Posts = React.lazy(() => import('./components/Posts'));
-const NotAuthorized = React.lazy(() => import('./pages/NotAuthorized'));
 
 const WithFallback = ({ children }: any): JSX.Element => {
   return <React.Suspense fallback={<Spinner size={50} />}>{children}</React.Suspense>;
@@ -68,7 +67,7 @@ const App = (): JSX.Element => {
             <Quote author='May Robins' quote='Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt, explicabo. Nemo enim ipsam voluptatem, quia voluptas sit, aspernatur aut odit aut fugit, sed quia consequuntur' />
           </>
         }/>
-          <Route path={pathRoutes.posts} element={AuthStore.profile ? <WithFallback><Posts /></WithFallback> : <WithFallback><NotAuthorized /></WithFallback>} />
+          <Route path={pathRoutes.posts} element={AuthStore.profile ? <WithFallback><Posts /></WithFallback> : <WithFallback><Posts /></WithFallback>} />
           <Route path='*' element={<WithFallback><NotFound /></WithFallback>} />
         </Routes>
       </Main>
