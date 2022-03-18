@@ -1,10 +1,12 @@
-import { ArrowLeftRounded } from '@mui/icons-material';
-import React, { MutableRefObject, ReactHTML, useRef } from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
+import { ImageCard } from '../../interfaces/ImageCard';
 
-interface Props {
-  cards: any;
+type CardProps = { card: ImageCard };
+interface CarouselProps {
+  cards: ImageCard[];
   cardSize: number;
+  gap: number;
 }
 
 const Sqimс = styled.div`
@@ -23,27 +25,28 @@ const RowContainer = styled.div`
   height: 100%;
 `;
 
-const Row = styled.div`
+const Row = styled.div<{ gap: number; }>`
   display: flex;
-  grid-gap: 40px;
-  gap: 40px;
   aspect-ratio: 3 / 2;
   height: 100%;
   width: 100%;
-  padding: 0 40px;
+  padding: 0 ${(props) => props.gap}px;
   overflow: auto;
   scrollbar-width: none;
   scroll-behavior: smooth;
+  gap: ${(props) => props.gap}px;
+  grid-gap: ${(props) => props.gap}px;
 
   &::-webkit-scrollbar {
     display: none;
   }
 `;
 
-const Card = styled.div`
+const Card = styled.div<CardProps>`
   max-width: 90%;
   flex: 0 0 auto;
   aspect-ratio: 1 / 1;
+  background-image: url('${(props) => props.card.background}');
 `;
 
 const Actions = styled.div`
@@ -106,21 +109,20 @@ const ArrowRight = styled.div`
    }
 `;
 
-export default function SquareImagesCarousel({ cards, cardSize }: Props) {
-  const GAP = 40;
+export default function SquareImagesCarousel({ cards, cardSize, gap }: CarouselProps) {
   const carouselRef = useRef<HTMLDivElement | null>(null);
 
   const makeScroll = (direction: number ): void => {
     if (carouselRef.current) {
       const { scrollLeft, offsetWidth,  scrollWidth } = carouselRef.current;
-      const cardWidth = cardSize + GAP;
+      const cardWidth = cardSize + gap;
       const visibleCards = Math.abs(Math.floor(offsetWidth / cardWidth));
       const visibleCardsWidth = cardWidth * visibleCards;
       const scrollStart = scrollLeft === 0;
       const scrollEnd = offsetWidth + scrollLeft === scrollWidth;
 
       if (scrollStart || scrollEnd) {
-        carouselRef.current.scrollLeft += direction * (cardWidth - ((offsetWidth - visibleCardsWidth - GAP) * 0.5));
+        carouselRef.current.scrollLeft += direction * (cardWidth - ((offsetWidth - visibleCardsWidth - gap) * 0.5));
         return;
       }
   
@@ -131,8 +133,8 @@ export default function SquareImagesCarousel({ cards, cardSize }: Props) {
   return (
       <Sqimс style={{ height: `${cardSize}px` }} >
         <RowContainer>
-          <Row ref={carouselRef}>
-            {cards.map((card: any ): JSX.Element => <Card key={card.background} style={{ backgroundImage: `url(${card.background})` }}/>)}
+          <Row ref={carouselRef} gap={gap}>
+            {cards.map((card: any ): JSX.Element => <Card key={card.id} card={card} />)}
           </Row>
         </RowContainer>
         <Actions>

@@ -21,9 +21,7 @@ const StyledButton = styled.button<Props>`
   text-overflow: ellipsis;
   margin-right: 10px;
   margin-bottom: 10px;
-
-  &:active {
-  }
+  font-family: Poppins-Regular;
 
   &:focus {  
     outline: 1px solid transparent;

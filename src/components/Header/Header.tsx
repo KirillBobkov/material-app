@@ -26,10 +26,6 @@ const FlexContainerSpaced = styled.div`
   height: 100%;
 `;
 
-const RelativeContainer = styled.div`
-  position: relative;
-`;
-
 const AbsoluteContainer = styled.div`
   position: absolute;
   top: 55px;
@@ -49,12 +45,16 @@ const StyledHeader = styled.header`
   padding: 0 20px;
   z-index: 100;
   background: #000000;
+
+  @media (max-width: 450px) {
+    padding: 0 5px;
+  }
 `;
 
 const StyledHeaderButton  = styled.div`
   display: flex;
   align-items: center;
-  padding: 20px;
+  padding: 0 20px;
   flex: 1 1 auto;
   cursor: pointer;
   color: #ffffff;
@@ -68,6 +68,10 @@ const StyledHeaderButton  = styled.div`
   span {
     text-decoration: none;
     color: inherit;
+  }
+
+  @media (max-width: 450px) {
+    padding: 0 10px;
   }
 `;
 
@@ -116,7 +120,6 @@ const Header = (): JSX.Element => {
           <Navigation>
               {!AuthStore.profile 
                 ? <>
-                    <RelativeContainer>
                       <StyledHeaderButton onClick={handleLogin}>Sign In</StyledHeaderButton>
                       <AbsoluteContainer 
                         onBlur={onBlurLoginForm} 
@@ -125,8 +128,6 @@ const Header = (): JSX.Element => {
                       >
                         {authState.login && <LoginForm closeForm={onBlurRegisterForm}/>}
                       </AbsoluteContainer>
-                    </RelativeContainer>
-                    <RelativeContainer>
                     <StyledHeaderButton onClick={handleRegister}>Sign Up</StyledHeaderButton>
                       <AbsoluteContainer 
                         onBlur={onBlurRegisterForm} 
@@ -135,7 +136,6 @@ const Header = (): JSX.Element => {
                       >
                         {authState.register && <RegisterForm closeForm={onBlurRegisterForm} />}
                       </AbsoluteContainer>
-                    </RelativeContainer>
                   </>
                 : <StyledHeaderButton onClick={handleLogout}>Logout</StyledHeaderButton>
               } 

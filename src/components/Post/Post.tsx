@@ -1,16 +1,13 @@
 import { observer } from 'mobx-react-lite';
-import React, { HTMLAttributes, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-import { IPost } from '../../interfaces';
+import { IPost } from '../../interfaces/IPost';
 
 import PostsStore from '../../state/PostsStore';
 
 import Button from '../Button';
 
-type Props2 = {
-  num: number
-};
 
 const StyledLi = styled.li`
   background-color: #ffffff;
@@ -24,7 +21,7 @@ const ButtonContainer = styled.div`
   text-align: center;
 `;
 
-const TextArea = styled.textarea<Props2>`
+const TextArea = styled.textarea`
   font-size: 14px;
   resize: none;
   width: 100%;
@@ -32,19 +29,15 @@ const TextArea = styled.textarea<Props2>`
   padding: 10px;
   display: block;
   border: none;
-  background-color: #e5e5e5;
-
-  background-image: url('https://picsum.photos/id/${(props) => props.num * 100 + 2}/500/200');
-  background-size: cover;
+  background-color: #e1e1e1;
   color: #000000;
-  box-shadow: inset 0px 0px 277px 50px #ffffff;
+  font-family: Poppins-Regular;
 
   &:focus {
     outline: 1px solid transparent;
   }
 `;
 
-// A new component based on Button, but with some override styles
 const TextAreaBlack = styled.textarea`
   font-size: 14px;
   resize: none;
@@ -55,6 +48,7 @@ const TextAreaBlack = styled.textarea`
   background-color: #000000;
   color: #ffffff;
   height: 65px;
+  font-family: Poppins-Regular;
 
   &:focus {
     outline: 1px solid transparent;
@@ -64,19 +58,16 @@ const TextAreaBlack = styled.textarea`
 
 interface Props {
   post: IPost;
-  num: number
 }
 
-const getInitialState = (): IPost =>  {
-  return {
-    userId: 0,
-    id:   '',
-    title: '',
-    body: '',
-  };
-};
+const getInitialState = (): IPost => ({
+  userId: 0,
+  id:   '',
+  title: '',
+  body: '',
+});
 
-const Post = ({ post, num }: Props ): JSX.Element => {
+const Post = ({ post }: Props ): JSX.Element => {
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [currentPost, setCurrentPost] = useState<IPost>(getInitialState());
   const { deletePost, updatePost } = PostsStore;
@@ -103,12 +94,11 @@ const Post = ({ post, num }: Props ): JSX.Element => {
           <>
             <TextAreaBlack
               value={currentPost.title}
-              onChange={(e: any ): void => { if (e.target.value.length < 100 ) setCurrentPost({ ...currentPost, title: e.target.value }); }}
+              onChange={(e: any): void => { if (e.target.value.length < 100 ) setCurrentPost({ ...currentPost, title: e.target.value }); }}
             />
             <TextArea
-              num={num}
               value={currentPost.body}
-              onChange={(e: any ): void => { if (e.target.value.length < 400 ) setCurrentPost({ ...currentPost, body: e.target.value }); }}
+              onChange={(e: any): void => { if (e.target.value.length < 400 ) setCurrentPost({ ...currentPost, body: e.target.value }); }}
             />
           </>
           :
@@ -118,14 +108,13 @@ const Post = ({ post, num }: Props ): JSX.Element => {
               disabled
             />
             <TextArea
-              num={num}
               value={currentPost.body}
               disabled
             />
           </>
         }
         <ButtonContainer>
-          <Button  onClick={() => deletePost(post.id)}>Delete post</Button>
+          <Button onClick={() => deletePost(post.id)}>Delete post</Button>
           {!isEditing && <Button color="#7a7a7a" onClick={onEditPost}>Edit post</Button>}
           {isEditing && <Button color="#7a7a7a" onClick={onSaveChanges}>Save post</Button>}
           {isEditing && <Button color="#afafaf" onClick={onCancelEditing}>Cancel changes</Button>}
@@ -133,6 +122,5 @@ const Post = ({ post, num }: Props ): JSX.Element => {
       </StyledLi>
   );
 };
-
 
 export default observer(Post);

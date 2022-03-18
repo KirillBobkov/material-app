@@ -1,4 +1,4 @@
-import { action, computed, flow, makeObservable, observable, onBecomeObserved } from 'mobx';
+import { action, flow, makeObservable, observable, onBecomeObserved } from 'mobx';
 import * as api from '../api';
 
 class AuthStore {
@@ -41,8 +41,6 @@ class AuthStore {
         const { data } = yield api.auth.getProfile();
         this.profile = data;
       }
-    } catch {
-
     } finally {
       this.isLoading = false;
     }

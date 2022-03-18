@@ -39,7 +39,7 @@ class PostsStore {
     }
   }  
     
-  *updatePost(id: string, data: any) {
+  *updatePost(id: string, data: IPost) {
     try {
       const { data: newData }: { data: IPost } = yield api.updatePost(id, data);
             
@@ -51,7 +51,7 @@ class PostsStore {
     }
   }   
 
-  get postsLength() {
+  get postsLength(): number{
     return this.posts.length;
   }
 }

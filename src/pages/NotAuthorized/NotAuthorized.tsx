@@ -22,7 +22,7 @@ const NotAuthorized = (): JSX.Element => {
   return <>
         <StyledH1>403 Forbidden</StyledH1>
         <StyledP>Sorry, you currently don&apos;t have permission to access this page.</StyledP>
-        <StyledP>Please, sign in or sing up to get an access.</StyledP>
+        <StyledP>Please, sign in or sign up to get an access.</StyledP>
 
   </>;
 };
