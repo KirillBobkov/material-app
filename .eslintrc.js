@@ -30,7 +30,7 @@ module.exports =  {
         "no-else-after-return": "off",
         "no-underscore-dangle": 0,
         "global-require": 0,
-        "linebreak-style": [2, "windows"],
+        "linebreak-style": 0,
         "no-console": 0,
         "semi": 1,
         "jsx-a11y/no-noninteractive-element-interactions": "off",
@@ -39,7 +39,6 @@ module.exports =  {
         "jsx-a11y/interactive-supports-focus": "off",
         "no-restricted-globals": "off",
         "react/no-did-update-set-state": "off",
-        //
         "react/require-default-props": "off",
         "react/display-name": "off",
         "indent": ["error", 2],
