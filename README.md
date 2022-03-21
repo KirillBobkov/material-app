@@ -1,6 +1,8 @@
 # Quotes
-CRUD Application with basic authorization.
-Uses for for reading, updating, deleting data by different approaches and technologies.
+Demo 
+
+Application with basic authorization.
+You could update, delete, edit your own quotes.
 
 Technologies: react, mobx,  styled-components, typescript
 
