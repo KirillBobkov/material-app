@@ -25,19 +25,19 @@ const StyledSpinner = styled.div<Props>`
     position: absolute;
   }
 
-    width:${props => props.size}px;
-    height:${props => props.size}px;
-    border-top-color: black;
-    top:calc(50% - 25px);
-    left:calc(50% - ${props => props.size * 0.5}px);
+  width: ${props => props.size}px;
+  height: ${props => props.size}px;
+  border-top-color: black;
+  top: calc(50% - 25px);
+  left: calc(50% - ${props => props.size * 0.5}px);
 
-  &::before{
+  &::before {
     border-top-color: black;
-    animation-duration:4s;
-    top:2px;
-    bottom:2px;
-    left:2px;
-    right:2px;
+    animation-duration: 4s;
+    top: 2px;
+    bottom: 2px;
+    left: 2px;
+    right: 2px;
   }
 `;
 

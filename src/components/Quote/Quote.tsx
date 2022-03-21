@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import * as api from '../../api';
-import { IQuote, IQuoteResponse } from '../../interfaces/IQuoteResponse';
 import { AxiosResponse } from 'axios';
+
+import * as api from '../../api';
+
+import { IQuote, IQuoteResponse } from '../../interfaces/IQuoteResponse';
 
 type StyledSpanType = {
   isVisible: boolean;

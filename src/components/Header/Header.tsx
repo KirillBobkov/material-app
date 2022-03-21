@@ -1,12 +1,13 @@
 import React, { RefObject, useRef } from 'react';
 import  {  useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { observer } from 'mobx-react-lite';
 
 import pathRoutes from '../../consts/pathRoutes';
 
 import RegisterForm from '../RegisterForm';
 import LoginForm from '../LoginForm';
-import { observer } from 'mobx-react-lite';
+
 import AuthStore from '../../state/AuthStore';
 
 const Navigation = styled.nav`
@@ -98,50 +99,50 @@ const Header = (): JSX.Element => {
     if (registerFormRef && registerFormRef.current) registerFormRef.current.focus();
   };
 
-  const onBlurLoginForm = (e: any ): void => {
+  const onBlurLoginForm = (e?: any): void => {
     if (!e || !e.relatedTarget) {
       setAuthState({ login: false, register: false });
     }
   };
 
-  const onBlurRegisterForm = (e: any ): void => {
+  const onBlurRegisterForm = (e?: any): void => {
     if (!e || !e.relatedTarget) {
       setAuthState({ login: false, register: false });
     }
   };
 
   return (
-      <StyledHeader>
-        <FlexContainerSpaced>
-          <Navigation>
-            <StyledHeaderButton onClick={(): void => navigate(pathRoutes.home)}>Home</StyledHeaderButton>
-            <StyledHeaderButton onClick={(): void => navigate(pathRoutes.posts)}>Posts</StyledHeaderButton>
-          </Navigation>
-          <Navigation>
-              {!AuthStore.profile 
-                ? <>
-                      <StyledHeaderButton onClick={handleLogin}>Sign In</StyledHeaderButton>
-                      <AbsoluteContainer 
-                        onBlur={onBlurLoginForm} 
-                        tabIndex={1} 
-                        ref={loginFormRef as RefObject<HTMLDivElement>} 
-                      >
-                        {authState.login && <LoginForm closeForm={onBlurRegisterForm}/>}
-                      </AbsoluteContainer>
-                    <StyledHeaderButton onClick={handleRegister}>Sign Up</StyledHeaderButton>
-                      <AbsoluteContainer 
-                        onBlur={onBlurRegisterForm} 
-                        tabIndex={2} 
-                        ref={registerFormRef as RefObject<HTMLDivElement>}
-                      >
-                        {authState.register && <RegisterForm closeForm={onBlurRegisterForm} />}
-                      </AbsoluteContainer>
-                  </>
-                : <StyledHeaderButton onClick={handleLogout}>Logout</StyledHeaderButton>
-              } 
-          </Navigation>
-        </FlexContainerSpaced>
-      </StyledHeader>
+    <StyledHeader>
+      <FlexContainerSpaced>
+        <Navigation>
+          <StyledHeaderButton onClick={(): void => navigate(pathRoutes.home)}>Home</StyledHeaderButton>
+          <StyledHeaderButton onClick={(): void => navigate(pathRoutes.posts)}>Posts</StyledHeaderButton>
+        </Navigation>
+        <Navigation>
+          {!AuthStore.profile 
+            ? <>
+              <StyledHeaderButton onClick={handleLogin}>Sign In</StyledHeaderButton>
+              <AbsoluteContainer 
+                onBlur={onBlurLoginForm} 
+                tabIndex={1} 
+                ref={loginFormRef as RefObject<HTMLDivElement>} 
+              >
+                {authState.login && <LoginForm closeForm={onBlurRegisterForm}/>}
+              </AbsoluteContainer>
+              <StyledHeaderButton onClick={handleRegister}>Sign Up</StyledHeaderButton>
+              <AbsoluteContainer 
+                onBlur={onBlurRegisterForm} 
+                tabIndex={2} 
+                ref={registerFormRef as RefObject<HTMLDivElement>}
+              >
+                {authState.register && <RegisterForm closeForm={onBlurRegisterForm} />}
+              </AbsoluteContainer>
+            </>
+            : <StyledHeaderButton onClick={handleLogout}>Logout</StyledHeaderButton>
+          } 
+        </Navigation>
+      </FlexContainerSpaced>
+    </StyledHeader>
   );
 };
 

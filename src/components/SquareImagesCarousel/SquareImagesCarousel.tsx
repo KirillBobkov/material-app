@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import styled from 'styled-components';
+
 import { ImageCard } from '../../interfaces/ImageCard';
 
 type CardProps = { card: ImageCard };
@@ -131,16 +132,16 @@ export default function SquareImagesCarousel({ cards, cardSize, gap }: CarouselP
   };
 
   return (
-      <Sqimс style={{ height: `${cardSize}px` }} >
-        <RowContainer>
-          <Row ref={carouselRef} gap={gap}>
-            {cards.map((card: any ): JSX.Element => <Card key={card.id} card={card} />)}
-          </Row>
-        </RowContainer>
-        <Actions>
-          <ArrowLeft onClick={(): void => makeScroll(-1)} />
-          <ArrowRight onClick={(): void => makeScroll(1)} />
-        </Actions>
-      </Sqimс>
+    <Sqimс style={{ height: `${cardSize}px` }} >
+      <RowContainer>
+        <Row ref={carouselRef} gap={gap}>
+          {cards.map((card: any ): JSX.Element => <Card key={card.id} card={card} />)}
+        </Row>
+      </RowContainer>
+      <Actions>
+        <ArrowLeft onClick={(): void => makeScroll(-1)} />
+        <ArrowRight onClick={(): void => makeScroll(1)} />
+      </Actions>
+    </Sqimс>
   );
 }

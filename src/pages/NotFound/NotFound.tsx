@@ -20,9 +20,9 @@ const StyledP = styled.h2`
 
 const NotFound = (): JSX.Element => {
   return <>
-        <StyledH1>404 Not found</StyledH1>
-        <StyledP>It could have been deleted or never have existed.</StyledP>
-        <StyledP> But you always can go to the home page.</StyledP>
+    <StyledH1>Ohh!</StyledH1>
+    <StyledP>Page could have been deleted or never have existed.</StyledP>
+    <StyledP> But you always can go to the home page.</StyledP>
   </>;
 };
 

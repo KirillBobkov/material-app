@@ -1,4 +1,5 @@
 import { IPost } from '../interfaces/IPost';
+
 import axiosInstance from './axiosInstance';
 
 class Posts {

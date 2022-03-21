@@ -1,5 +1,7 @@
 import { computed, flow, makeObservable, observable } from 'mobx';
+
 import api from '../api/posts';
+
 import { IPost } from '../interfaces/IPost';
 
 class PostsStore {

@@ -8,21 +8,21 @@ type Props = {
 const StyledButton = styled.button<Props>`
   max-width: 90%;
   padding: 10px 20px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  font-family: Poppins-Regular;
   font-size: 14px;
   line-height: 16px;
   text-align: center;
   letter-spacing: 0.1em;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   color: white;
   background: ${(props) => props.color || '#000'};
   cursor: pointer;
   border: none;
   overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  margin-right: 10px;
-  margin-bottom: 10px;
-  font-family: Poppins-Regular;
-
+  
   &:focus {  
     outline: 1px solid transparent;
   }

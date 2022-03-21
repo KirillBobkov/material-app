@@ -17,11 +17,11 @@ const StyledMain = styled.main`
 
 const Main = ({ children }: Props): JSX.Element => {
   return (
-      <StyledMain>
-        <div>
-          {children}
-        </div>
-      </StyledMain>
+    <StyledMain>
+      <div>
+        {children}
+      </div>
+    </StyledMain>
   );
 };
 

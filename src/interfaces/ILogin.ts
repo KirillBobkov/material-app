@@ -1,6 +1,6 @@
 import { IRegistration } from './IRegistration';
 
-export interface ILogin extends Omit<IRegistration, 'email' | 'password'> {
-  firstName: string;
-  lastName:  string;
+export interface ILogin extends Omit<IRegistration, 'firstName' | 'lastName'> {
+  email: string;
+  password:  string;
 }

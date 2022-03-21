@@ -1,5 +1,6 @@
 import { ILogin } from './../interfaces/ILogin';
 import { IRegistration } from '../interfaces/IRegistration';
+
 import axiosInstance from './axiosInstance';
 
 class Auth {

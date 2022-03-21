@@ -41,7 +41,8 @@ module.exports =  {
         "react/no-did-update-set-state": "off",
         //
         "react/require-default-props": "off",
-        "react/display-name": "off"
+        "react/display-name": "off",
+        "indent": ["error", 2],
         // Place to specify ESLint rules. Can be used to overwrite rules specified from the extended configs
         // e.g. "@typescript-eslint/explicit-function-return-type": "off",
     },

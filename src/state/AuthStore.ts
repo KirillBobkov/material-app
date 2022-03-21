@@ -1,4 +1,5 @@
 import { action, flow, makeObservable, observable, onBecomeObserved } from 'mobx';
+
 import * as api from '../api';
 
 class AuthStore {

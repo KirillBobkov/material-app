@@ -27,9 +27,9 @@ const App = (): JSX.Element => {
       <Header />
       <Main>
         <Routes>
-            <Route path='/' element={getSuspendedElement(Home)} />
-            <Route path={pathRoutes.posts} element={getSuspendedElement(AuthStore.profile ? Posts : NotAuthorized)} />
-            <Route path='*' element={getSuspendedElement(NotFound)} />
+          <Route path='/' element={getSuspendedElement(Home)} />
+          <Route path={pathRoutes.posts} element={getSuspendedElement(AuthStore.profile ? Posts : NotAuthorized)} />
+          <Route path='*' element={getSuspendedElement(NotFound)} />
         </Routes>
       </Main>
     </>

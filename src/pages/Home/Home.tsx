@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 
 import Quote from '../../components/Quote';
 import SquareImagesCarousel from '../../components/SquareImagesCarousel';
+
 import { bidImages, smallImages } from '../../consts/images';
 
 const Home = (): JSX.Element => {
