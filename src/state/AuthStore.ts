@@ -1,9 +1,10 @@
 import { action, flow, makeObservable, observable, onBecomeObserved } from 'mobx';
 
 import * as api from '../api';
+import { IProfile } from '../interfaces/IProfile';
 
 class AuthStore {
-  public profile: any = null;
+  public profile: IProfile | null = null;
 
   public isLoading = true;
 
@@ -20,7 +21,7 @@ class AuthStore {
     onBecomeObserved(this, 'profile', this.loadData);
   }
 
-  setTokenToStorage = (token: any): void => {
+  setTokenToStorage = (token: string | null): void => {
     if (token) localStorage.setItem('token', token);
     else localStorage.removeItem('token');
   };
@@ -30,7 +31,7 @@ class AuthStore {
     this.setTokenToStorage(null);
   };
 
-  setProfile = (data: any): void => {
+  setProfile = (data: IProfile): void => {
     this.profile = data;
   };
 
@@ -40,6 +41,7 @@ class AuthStore {
     try {
       if (token) {
         const { data } = yield api.auth.getProfile();
+
         this.profile = data;
       }
     } finally {

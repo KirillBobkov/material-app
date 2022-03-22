@@ -11,6 +11,7 @@ import Spinner from '../Spinner';
 
 
 const StyledLi = styled.li<{ isFetching: boolean }>`
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -18,7 +19,8 @@ const StyledLi = styled.li<{ isFetching: boolean }>`
   background-color: #f1f1f1;
   box-sizing: border-box;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
-  ${props => props.isFetching ? 'filter: brightness(70%);' : ''}
+
+  ${props => props.isFetching ? 'filter: brightness(90%);' : ''}
 `;
 
 const ButtonContainer = styled.div`
@@ -61,19 +63,21 @@ const TextAreaTitle = styled(TextArea)`
   }
 `;
 
-const PostTitle = styled.h2`
+const PostTitle = styled.h3`
   padding: 10px;
   margin: 0;
   color: #000000;
   background-color: #f1f1f1;
+  font-family: Poppins-Regular;
   font-size: 30px;
 `;
 
-const PostContent = styled.h2`
+const PostContent = styled.p`
   padding: 10px;
   margin: 0;
   color: #000000;
   background-color: #f1f1f1;
+  font-family: Poppins-Regular;
   font-size: 14px;
 `;
 

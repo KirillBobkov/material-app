@@ -1,4 +1,4 @@
-import React, { HTMLAttributes } from 'react';
+import React, { HTMLAttributes, HTMLInputTypeAttribute } from 'react';
 import styled from 'styled-components';
 
 type Props = {
@@ -6,7 +6,7 @@ type Props = {
   value: string;
   placeholder: string;
   invalidMessage?: string;
-  type?: string; 
+  type?: HTMLInputTypeAttribute; 
 } & HTMLAttributes<HTMLInputElement>;
 
 const StyledInput = styled.input<{ isInvalid: boolean }>`

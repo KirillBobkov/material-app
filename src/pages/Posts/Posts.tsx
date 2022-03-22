@@ -35,8 +35,7 @@ const Posts = (): JSX.Element => {
       <Quote />
       {!!postsLength && <Counter count={postsLength} />}
       {posts.length 
-        ? 
-        <StyledUl>{posts.map((post: IPost): JSX.Element => <Post key={post.id} post={post} />)}</StyledUl>
+        ?  <StyledUl>{posts.map((post: IPost): JSX.Element => <Post key={post.id} post={post} />)}</StyledUl>
         :  <Spinner size={50}/>}
       <Quote />
     </div>

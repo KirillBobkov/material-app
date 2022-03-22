@@ -10,13 +10,15 @@ const Home = (): JSX.Element => {
     window.scrollTo(0, 0);
   }, []);
 
-  return <>
-    <Quote />
-    <SquareImagesCarousel cardSize={400} gap={40} cards={bidImages} />
-    <Quote />
-    <SquareImagesCarousel cardSize={200} gap={20} cards={smallImages} />
-    <Quote />
-  </>;
+  return (
+    <>
+      <Quote />
+      <SquareImagesCarousel cardSize={400} gap={40} cards={bidImages} />
+      <Quote />
+      <SquareImagesCarousel cardSize={200} gap={20} cards={smallImages} />
+      <Quote />
+    </>
+  );
 };
 
 export default Home;

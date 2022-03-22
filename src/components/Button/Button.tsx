@@ -18,10 +18,11 @@ const StyledButton = styled.button<Props>`
   white-space: nowrap;
   text-overflow: ellipsis;
   color: white;
-  background: ${(props) => props.color || '#000'};
+  background: ${(props) => props.color || '#000000'};
   cursor: pointer;
   border: none;
   overflow: hidden;
+  transition: opacity .5s;
   
   &:focus {  
     outline: 1px solid transparent;
@@ -30,6 +31,18 @@ const StyledButton = styled.button<Props>`
   &:disabled {
     pointer-events: none;
     background: gray;
+  }
+
+  &:hover {
+    opacity: 0.5;
+  }
+
+  @media (max-width: 450px) and (pointer:coarse) {
+    padding: 0 10px;
+
+    &:hover {
+      opacity: 1;
+    }
   }
 `;
 

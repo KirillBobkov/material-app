@@ -6,7 +6,7 @@ import Input from '../Input';
 import Button from '../Button';
 import Spinner from '../Spinner';
 
-import authApi from '../../api/auth';
+import * as api from '../../api';
 
 import { IRegistration } from '../../interfaces/IRegistration';
 
@@ -30,7 +30,7 @@ const StyledForm = styled.form<{ isFetching: boolean }>`
   box-sizing: border-box;
   padding: 20px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
-  ${props => props.isFetching ? 'filter: brightness(70%);' : ''}
+  ${props => props.isFetching ? 'filter: brightness(90%);' : ''}
 `;
 
 const FormFooter = styled.div`
@@ -42,12 +42,12 @@ const RegisterForm = ({ closeForm }: Props): JSX.Element  => {
   const [errors, setError] = useState<IRegistration | null>(null);
   const [isFetching, setFetching] = useState<boolean>(false);
 
-  const onSubmit = async (e: any ): Promise<any> => {
+  const onSubmit = async (e: any): Promise<any> => {
     e.preventDefault();
     setFetching(true);
 
     try {
-      await authApi.register({ ...registerData });
+      await api.auth.register({ ...registerData });
       setRegisterData(getInitialState());
       closeForm();
     } catch (res) {

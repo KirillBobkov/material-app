@@ -31,7 +31,7 @@ const StyledForm = styled.form<{ isFetching: boolean }>`
   background: #ffffff;
   box-sizing: border-box;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
-  ${props => props.isFetching ? 'filter: brightness(70%);' : ''}
+  ${props => props.isFetching ? 'filter: brightness(90%);' : ''}
 `;
 
 const FormFooter = styled.div`
@@ -44,7 +44,7 @@ const LoginForm = ({ closeForm }: Props): JSX.Element => {
   const [isFetching, setFetching] = useState<boolean>(false);
   const { setTokenToStorage, setProfile } = AuthStore;
 
-  const onSubmit = async (e: any ): Promise<any> => {
+  const onSubmit = async (e: any): Promise<any> => {
     e.preventDefault();
     setFetching(true);
 

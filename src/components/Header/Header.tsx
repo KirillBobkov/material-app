@@ -1,4 +1,4 @@
-import React, { RefObject, useRef } from 'react';
+import React, { RefObject, useRef, useState } from 'react';
 import  {  useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { observer } from 'mobx-react-lite';
@@ -83,14 +83,14 @@ const StyledHeaderButton  = styled.div`
 type AuthState = { login: boolean; register: boolean };
 
 const Header = (): JSX.Element => {
-  const [authState, setAuthState] = React.useState<AuthState>({ login: false, register: false });
+  const [authState, setAuthState] = useState<AuthState>({ login: false, register: false });
   const loginFormRef: RefObject<HTMLDivElement> = useRef(null);
   const registerFormRef: RefObject<HTMLDivElement>  = useRef(null);
   const navigate = useNavigate();
 
   const handleLogin = (): void => {
     setAuthState({ login: true, register: false });
-    if (loginFormRef && loginFormRef.current) loginFormRef.current.focus();
+    loginFormRef?.current?.focus();
   };
 
   const handleLogout = (): void => {
@@ -100,7 +100,7 @@ const Header = (): JSX.Element => {
 
   const handleRegister = (): void => {
     setAuthState({ login: false, register: true }); 
-    if (registerFormRef && registerFormRef.current) registerFormRef.current.focus();
+    registerFormRef?.current?.focus();
   };
 
   const onBlurLoginForm = (e?: any): void => {
@@ -142,7 +142,10 @@ const Header = (): JSX.Element => {
                 {authState.register && <RegisterForm closeForm={onBlurRegisterForm} />}
               </AbsoluteContainer>
             </>
-            : <StyledHeaderButton onClick={handleLogout}>Logout</StyledHeaderButton>
+            : <>
+              <StyledHeaderButton>My Profile</StyledHeaderButton>
+              <StyledHeaderButton onClick={handleLogout}>Logout</StyledHeaderButton>
+            </>
           } 
         </Navigation>
       </FlexContainerSpaced>

@@ -26,7 +26,7 @@ const StyledCounter  = styled.div`
 const Counter = ({ count }: Props): JSX.Element => (
   <StyledCounter>
     <h6>TOTAL POSTS</h6>
-    <h1>{`${count}`}</h1>
+    <h2>{`${count}`}</h2>
   </StyledCounter>
 );
 
