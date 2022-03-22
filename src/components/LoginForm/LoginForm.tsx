@@ -31,7 +31,7 @@ const StyledForm = styled.form<{ isFetching: boolean }>`
   background: #ffffff;
   box-sizing: border-box;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
-  ${props => props.isFetching ? 'filter: blur(2px);' : ''}
+  ${props => props.isFetching ? 'filter: brightness(70%);' : ''}
 `;
 
 const FormFooter = styled.div`

@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 import { ImageCard } from '../../interfaces/ImageCard';
 
-type CardProps = { card: ImageCard };
 interface CarouselProps {
   cards: ImageCard[];
   cardSize: number;
@@ -28,7 +27,6 @@ const RowContainer = styled.div`
 
 const Row = styled.div<{ gap: number; }>`
   display: flex;
-  aspect-ratio: 3 / 2;
   height: 100%;
   width: 100%;
   padding: 0 ${(props) => props.gap}px;
@@ -43,11 +41,9 @@ const Row = styled.div<{ gap: number; }>`
   }
 `;
 
-const Card = styled.div<CardProps>`
+const Card = styled.img`
   max-width: 90%;
   flex: 0 0 auto;
-  aspect-ratio: 1 / 1;
-  background-image: url('${(props) => props.card.background}');
 `;
 
 const Actions = styled.div`
@@ -132,10 +128,16 @@ export default function SquareImagesCarousel({ cards, cardSize, gap }: CarouselP
   };
 
   return (
-    <Sqimс style={{ height: `${cardSize}px` }} >
+    <Sqimс>
       <RowContainer>
         <Row ref={carouselRef} gap={gap}>
-          {cards.map((card: any ): JSX.Element => <Card key={card.id} card={card} />)}
+          {cards.map((card: ImageCard): JSX.Element => (
+            <Card 
+              width={cardSize} 
+              key={card.id} 
+              src={card.background} 
+            />
+          ))}
         </Row>
       </RowContainer>
       <Actions>

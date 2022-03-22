@@ -71,8 +71,12 @@ const StyledHeaderButton  = styled.div`
     color: inherit;
   }
 
-  @media (max-width: 450px) {
+  @media (max-width: 450px) and (pointer:coarse) {
     padding: 0 10px;
+
+    &:hover {
+      opacity: 1;
+    }
   }
 `;
 
