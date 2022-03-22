@@ -14,6 +14,7 @@ const StyledInput = styled.input<{ isInvalid: boolean }>`
   padding: 10px;
   border: 1px solid gray;
   font-size: 14px;
+  border-radius: 0;
   ${props => props.isInvalid ? 'border: 1px solid red;' : ''}
 
   &:focus {

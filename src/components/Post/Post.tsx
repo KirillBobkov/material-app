@@ -7,19 +7,23 @@ import { IPost } from '../../interfaces/IPost';
 import PostsStore from '../../state/PostsStore';
 
 import Button from '../Button';
+import Spinner from '../Spinner';
 
 
 const StyledLi = styled.li<{ isFetching: boolean }>`
-  width: 500px;
-  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 505px;
+  background-color: #f1f1f1;
   box-sizing: border-box;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
-  ${props => props.isFetching ? 'filter: blur(2px);' : ''}
+  ${props => props.isFetching ? 'filter: brightness(70%);' : ''}
 `;
 
 const ButtonContainer = styled.div`
   padding: 20px;
-  text-align: center;
+  text-align: left;
 `;
 
 const TextArea = styled.textarea`
@@ -31,18 +35,46 @@ const TextArea = styled.textarea`
   font-size: 14px;
   resize: none;
   border: none;
-  background-color: #e1e1e1;
   color: #000000;
+  background-color: #f1f1f1;
 
   &:focus {
     outline: 1px solid transparent;
   }
+
+  &:disabled {
+    color: #000000;
+    background-color: #f1f1f1;
+  }
 `;
 
-const TextAreaBlack = styled(TextArea)`
+const TextAreaTitle = styled(TextArea)`
   height: 65px;
-  background-color: #000000;
-  color: #ffffff;
+  color: #000000;
+  background-color: #f1f1f1;
+  font-size: 30px;
+  font-family: Poppins-Regular;
+
+  &:disabled {
+    color: #000000;
+    background-color: #f1f1f1;
+  }
+`;
+
+const PostTitle = styled.h2`
+  padding: 10px;
+  margin: 0;
+  color: #000000;
+  background-color: #f1f1f1;
+  font-size: 30px;
+`;
+
+const PostContent = styled.h2`
+  padding: 10px;
+  margin: 0;
+  color: #000000;
+  background-color: #f1f1f1;
+  font-size: 14px;
 `;
 
 interface Props {
@@ -83,27 +115,21 @@ const Post = ({ post }: Props ): JSX.Element => {
   return (
     <StyledLi isFetching={isFetching}>
       {isEditing ? 
-        <>
-          <TextAreaBlack
+        <div>
+          <TextAreaTitle
             value={currentPost.title}
-            onChange={(e: any): void => { if (e.target.value.length < 100 ) setCurrentPost({ ...currentPost, title: e.target.value }); }}
+            onChange={(e: any): void => { if (e.target.value.length < 30 ) setCurrentPost({ ...currentPost, title: e.target.value }); }}
           />
           <TextArea
             value={currentPost.body}
             onChange={(e: any): void => { if (e.target.value.length < 400 ) setCurrentPost({ ...currentPost, body: e.target.value }); }}
           />
-        </>
+        </div>
         :
-        <>
-          <TextAreaBlack
-            value={currentPost.title}
-            disabled
-          />
-          <TextArea
-            value={currentPost.body}
-            disabled
-          />
-        </>
+        <div>
+          <PostTitle>{currentPost.title}</PostTitle>
+          <PostContent>{currentPost.body}</PostContent>
+        </div>
       }
       <ButtonContainer>
         <Button onClick={() => deletePost(post.id)}>Delete post</Button>
@@ -111,6 +137,7 @@ const Post = ({ post }: Props ): JSX.Element => {
         {isEditing && <Button color="#7a7a7a" onClick={onSaveChanges}>Save post</Button>}
         {isEditing && <Button color="#afafaf" onClick={onCancelEditing}>Cancel changes</Button>}
       </ButtonContainer>
+      {isFetching && <Spinner size={50} />}
     </StyledLi>
   );
 };
