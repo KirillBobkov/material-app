@@ -6,7 +6,7 @@ type Props = {
 } & HTMLAttributes<HTMLButtonElement>;
 
 const StyledButton = styled.button<Props>`
-  max-width: 90%;
+
   padding: 10px 20px;
   margin-right: 10px;
   margin-bottom: 10px;
@@ -38,8 +38,8 @@ const StyledButton = styled.button<Props>`
   }
 
   @media (max-width: 450px) and (pointer:coarse) {
-    padding: 0 10px;
-
+    width: 100%;
+    
     &:hover {
       opacity: 1;
     }

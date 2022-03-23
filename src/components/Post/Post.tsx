@@ -136,10 +136,10 @@ const Post = ({ post }: Props ): JSX.Element => {
         </div>
       }
       <ButtonContainer>
-        <Button onClick={() => deletePost(post.id)}>Delete post</Button>
         {!isEditing && <Button color="#7a7a7a" onClick={onEditPost}>Edit post</Button>}
         {isEditing && <Button color="#7a7a7a" onClick={onSaveChanges}>Save post</Button>}
         {isEditing && <Button color="#afafaf" onClick={onCancelEditing}>Cancel changes</Button>}
+        <Button onClick={() => deletePost(post.id)}>Delete post</Button>
       </ButtonContainer>
       {isFetching && <Spinner size={50} />}
     </StyledLi>
