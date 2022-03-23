@@ -25,13 +25,15 @@ const App = (): JSX.Element => {
   return (
     <>
       <Header />
-      <Main>
-        <Routes>
-          <Route path='/' element={getSuspendedElement(Home)} />
-          <Route path={pathRoutes.posts} element={getSuspendedElement(AuthStore.profile ? Posts : NotAuthorized)} />
-          <Route path='*' element={getSuspendedElement(NotFound)} />
-        </Routes>
-      </Main>
+      {AuthStore.isLoading 
+        ? <Spinner size={50} /> 
+        : <Main>
+          <Routes>
+            <Route path='/' element={getSuspendedElement(Home)} />
+            <Route path={pathRoutes.posts} element={getSuspendedElement(AuthStore.profile ? Posts : NotAuthorized)} />
+            <Route path='*' element={getSuspendedElement(NotFound)} />
+          </Routes>
+        </Main>}
     </>
   );
 };

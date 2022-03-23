@@ -6,15 +6,11 @@ import * as api from '../../api';
 
 import { IQuote, IQuoteResponse } from '../../interfaces/IQuoteResponse';
 
-type StyledSpanType = {
+type StyledSectionType = {
   isVisible: boolean;
 };
 
-type StyledParagraphType = {
-  isVisible: boolean;
-};
-
-const StyledSection  = styled.section`
+const StyledSection  = styled.section<StyledSectionType>`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -24,25 +20,23 @@ const StyledSection  = styled.section`
   margin: 0 auto;
   width: 100%;
   min-height: 250px;
+  transition: opacity .5s;
+  opacity: ${props => props.isVisible ? 1 : 0};
 `;
 
-const StyledParagraph  = styled.span<StyledParagraphType>`
+const StyledParagraph  = styled.span`
   text-align: center;
   margin-bottom: 40px;
   font-size: 16px;
   color: white;
-  transition: opacity .5s;
   margin: 0;
   margin-bottom: 20px;
-  opacity: ${props => props.isVisible ? 1 : 0};
 `;
 
-const StyledSpan  = styled.span<StyledSpanType>`
+const StyledSpan  = styled.span`
   font-size: 12px;
   color: white;
   font-weight: 700;
-  transition: opacity .5s;
-  opacity: ${props => props.isVisible ? 1 : 0};
 `;
 
 const getInitialState = (): IQuote =>  ({
@@ -64,9 +58,9 @@ const Quote = (): JSX.Element => {
   }, []);
 
   return (
-    <StyledSection>
-      <StyledParagraph isVisible={!!quote.text}>{quote.text}</StyledParagraph>
-      <StyledSpan isVisible={!!quote.author}>{quote.author}</StyledSpan>
+    <StyledSection isVisible={!!quote.text}>
+      <StyledParagraph>{quote.text}</StyledParagraph>
+      <StyledSpan>{quote.author}</StyledSpan>
     </StyledSection>
   );
 };
