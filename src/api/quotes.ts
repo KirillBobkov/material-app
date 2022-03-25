@@ -1,10 +1,10 @@
 import axiosInstance from './axiosInstance';
 
 class Quote {
-  private baseURL = 'https://private-anon-60f43e9cd0-goquotes.apiary-proxy.com/api/v1/random?count=1';
+  private baseURL = 'https://jsonplaceholder.typicode.com/posts';
 
-  public getRandomQuote(): Promise<any> {
-    return axiosInstance.get(`${this.baseURL}`);
+  public getQuote(postNumber: number): Promise<any> {
+    return axiosInstance.get(`${this.baseURL}/${postNumber}`);
   }
 }
 

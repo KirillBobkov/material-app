@@ -7,20 +7,14 @@ interface Props {
 
 const StyledMain = styled.main`
   flex: 1;
-  margin-top: 60px;
-
-  & > div {
-    width: 100%;
-    margin: 0 auto;
-  }
+  width: 100%;
+  margin: 60px auto 0;
 `;
 
 const Main = ({ children }: Props): JSX.Element => {
   return (
     <StyledMain>
-      <div>
-        {children}
-      </div>
+      {children}
     </StyledMain>
   );
 };

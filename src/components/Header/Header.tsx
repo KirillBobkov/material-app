@@ -7,6 +7,7 @@ import pathRoutes from '../../consts/pathRoutes';
 
 import RegisterForm from '../RegisterForm';
 import LoginForm from '../LoginForm';
+import ProfileCard from '../ProfileCard';
 
 import AuthStore from '../../state/AuthStore';
 
@@ -80,38 +81,44 @@ const StyledHeaderButton  = styled.div`
   }
 `;
 
-type AuthState = { login: boolean; register: boolean };
+type AuthState = { login: boolean; register: boolean, profile: boolean };
 
 const Header = (): JSX.Element => {
-  const [authState, setAuthState] = useState<AuthState>({ login: false, register: false });
+  const getInitialAuthState = () => ({ 
+    login: false, 
+    register: false,
+    profile: false,
+  });
+
+  const [authState, setAuthState] = useState<AuthState>(getInitialAuthState());
   const loginFormRef: RefObject<HTMLDivElement> = useRef(null);
   const registerFormRef: RefObject<HTMLDivElement>  = useRef(null);
+  const profileCardRef: RefObject<HTMLDivElement>  = useRef(null);
   const navigate = useNavigate();
 
   const handleLogin = (): void => {
-    setAuthState({ login: true, register: false });
+    setAuthState({ login: true, register: false, profile: false });
     loginFormRef?.current?.focus();
   };
 
   const handleLogout = (): void => {
-    setAuthState({ login: false, register: false }); 
+    setAuthState({ login: false, register: false, profile: false }); 
     AuthStore.logOut(); 
   };
 
   const handleRegister = (): void => {
-    setAuthState({ login: false, register: true }); 
+    setAuthState({ login: false, register: true, profile: false }); 
     registerFormRef?.current?.focus();
   };
 
-  const onBlurLoginForm = (e?: any): void => {
-    if (!e || !e.relatedTarget) {
-      setAuthState({ login: false, register: false });
-    }
+  const handleShowProfile = (): void => {
+    setAuthState({ login: false, register: false, profile: true }); 
+    profileCardRef?.current?.focus();
   };
 
-  const onBlurRegisterForm = (e?: any): void => {
+  const onBlurAbsoluteContainer = (e?: any) => {
     if (!e || !e.relatedTarget) {
-      setAuthState({ login: false, register: false });
+      setAuthState(getInitialAuthState());
     }
   };
 
@@ -127,23 +134,30 @@ const Header = (): JSX.Element => {
             ? <>
               <StyledHeaderButton onClick={handleLogin}>Sign In</StyledHeaderButton>
               <AbsoluteContainer 
-                onBlur={onBlurLoginForm} 
+                onBlur={onBlurAbsoluteContainer} 
                 tabIndex={1} 
                 ref={loginFormRef as RefObject<HTMLDivElement>} 
               >
-                {authState.login && <LoginForm closeForm={onBlurRegisterForm}/>}
+                {authState.login && <LoginForm closeForm={onBlurAbsoluteContainer}/>}
               </AbsoluteContainer>
               <StyledHeaderButton onClick={handleRegister}>Sign Up</StyledHeaderButton>
               <AbsoluteContainer 
-                onBlur={onBlurRegisterForm} 
+                onBlur={onBlurAbsoluteContainer} 
                 tabIndex={2} 
                 ref={registerFormRef as RefObject<HTMLDivElement>}
               >
-                {authState.register && <RegisterForm closeForm={onBlurRegisterForm} />}
+                {authState.register && <RegisterForm closeForm={onBlurAbsoluteContainer} />}
               </AbsoluteContainer>
             </>
             : <>
-              <StyledHeaderButton>My Profile</StyledHeaderButton>
+              <StyledHeaderButton onClick={handleShowProfile}>My Profile</StyledHeaderButton>
+              <AbsoluteContainer 
+                onBlur={onBlurAbsoluteContainer} 
+                tabIndex={3} 
+                ref={profileCardRef as RefObject<HTMLDivElement>}
+              >
+                {authState.profile && <ProfileCard />}
+              </AbsoluteContainer>
               <StyledHeaderButton onClick={handleLogout}>Logout</StyledHeaderButton>
             </>
           } 

@@ -15,11 +15,11 @@ const StyledLi = styled.li<{ isFetching: boolean }>`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 505px;
+  width: 100%;
+  margin-bottom: 40px;
   background-color: #f1f1f1;
   box-sizing: border-box;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
-
   ${props => props.isFetching ? 'filter: brightness(90%);' : ''}
 `;
 
@@ -32,7 +32,7 @@ const TextArea = styled.textarea`
   display: block;
   width: 100%;
   height: 200px;
-  padding: 10px;
+  padding: 20px;
   font-family: Poppins-Regular;
   font-size: 14px;
   resize: none;
@@ -64,7 +64,7 @@ const TextAreaTitle = styled(TextArea)`
 `;
 
 const PostTitle = styled.h3`
-  padding: 10px;
+  padding: 20px;
   margin: 0;
   color: #000000;
   background-color: #f1f1f1;
@@ -73,7 +73,7 @@ const PostTitle = styled.h3`
 `;
 
 const PostContent = styled.p`
-  padding: 10px;
+  padding: 20px;
   margin: 0;
   color: #000000;
   background-color: #f1f1f1;

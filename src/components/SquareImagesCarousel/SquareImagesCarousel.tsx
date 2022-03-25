@@ -9,13 +9,12 @@ interface CarouselProps {
   gap: number;
 }
 
-const Sqimс = styled.div`
+const StyledSection = styled.section`
   position: relative;
   display: flex;
   flex-wrap: wrap;
   box-sizing: content-box;
   margin: 40px auto;
-  background: #ffffff;
   overflow: hidden;
 `;
 
@@ -33,17 +32,20 @@ const Row = styled.div<{ gap: number; }>`
   overflow: auto;
   scrollbar-width: none;
   scroll-behavior: smooth;
-  gap: ${(props) => props.gap}px;
-  grid-gap: ${(props) => props.gap}px;
 
   &::-webkit-scrollbar {
     display: none;
   }
 `;
 
-const Card = styled.img`
+const Card = styled.img<{ gap: number; }>`
   max-width: 90%;
   flex: 0 0 auto;
+  margin-right: ${(props) => props.gap}px;
+
+  &:last-child {
+    margin-right: 0;
+  }
 `;
 
 const Actions = styled.div`
@@ -116,7 +118,7 @@ export default function SquareImagesCarousel({ cards, cardSize, gap }: CarouselP
       const visibleCards = Math.abs(Math.floor(offsetWidth / cardWidth));
       const visibleCardsWidth = cardWidth * visibleCards;
       const scrollStart = scrollLeft === 0;
-      const scrollEnd = offsetWidth + scrollLeft === scrollWidth;
+      const scrollEnd = offsetWidth + scrollLeft >= scrollWidth;
 
       if (scrollStart || scrollEnd) {
         carouselRef.current.scrollLeft += direction * (cardWidth - ((offsetWidth - visibleCardsWidth - gap) * 0.5));
@@ -128,11 +130,12 @@ export default function SquareImagesCarousel({ cards, cardSize, gap }: CarouselP
   };
 
   return (
-    <Sqimс>
+    <StyledSection>
       <RowContainer>
         <Row ref={carouselRef} gap={gap}>
           {cards.map((card: ImageCard): JSX.Element => (
             <Card 
+              gap={gap}
               width={cardSize} 
               key={card.id} 
               src={card.background} 
@@ -144,6 +147,6 @@ export default function SquareImagesCarousel({ cards, cardSize, gap }: CarouselP
         <ArrowLeft onClick={(): void => makeScroll(-1)} />
         <ArrowRight onClick={(): void => makeScroll(1)} />
       </Actions>
-    </Sqimс>
+    </StyledSection>
   );
 }

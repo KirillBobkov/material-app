@@ -1,30 +1,58 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { AxiosResponse } from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
 import * as api from '../../api';
 
-import { IQuote, IQuoteResponse } from '../../interfaces/IQuoteResponse';
+import { IQuote } from '../../interfaces/IQuote';
+import Spinner from '../Spinner';
 
 type StyledSectionType = {
   isVisible: boolean;
 };
 
 const StyledSection  = styled.section<StyledSectionType>`
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 40px;
-  background-color: gray;
   margin: 0 auto;
   width: 100%;
   min-height: 250px;
-  transition: opacity .5s;
-  opacity: ${props => props.isVisible ? 1 : 0};
+   ${props => props.isVisible ? 'background-color: #4d4d4d;' : ''}
+  text-align: center;
 `;
 
-const StyledParagraph  = styled.span`
+const BorderContainer = styled.div`
+  border: 3px solid white;
+  padding: 40px;
+  color: white;
+  background-color: inherit;
+
+  &:before {
+    padding: 10px;
+    position: absolute;
+    top: 30px;
+    left: 20px;
+    content: '❝';
+    background-color: inherit;
+    font-size: 50px;
+  }
+
+  &:after {
+    padding: 10px;
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
+    content: '❜❜';
+    background-color: inherit;
+    font-size: 50px;
+  }
+`;
+
+const StyledParagraph = styled.p`
   text-align: center;
   margin-bottom: 40px;
   font-size: 16px;
@@ -37,12 +65,14 @@ const StyledSpan  = styled.span`
   font-size: 12px;
   color: white;
   font-weight: 700;
+  text-align: center;
 `;
 
 const getInitialState = (): IQuote =>  ({
-  author: '',
-  tag:   '',
-  text: '',
+  userId: 0,
+  id:   '',
+  title: '',
+  body: '',
 });
 
 const Quote = (): JSX.Element => {
@@ -50,17 +80,22 @@ const Quote = (): JSX.Element => {
 
   useEffect(() => {
     const fetchQuote = async () =>  {
-      const res: AxiosResponse<IQuoteResponse>  = await api.quotes.getRandomQuote();
-      setQuote(res.data.quotes[0]);
+      const randomNumber = Math.round(40 - 0.5 + Math.random() * (40 - 1 + 1));
+      const res: AxiosResponse<IQuote>  = await api.quotes.getQuote(randomNumber);
+      setQuote(res.data);
     };
 
     fetchQuote();
   }, []);
 
   return (
-    <StyledSection isVisible={!!quote.text}>
-      <StyledParagraph>{quote.text}</StyledParagraph>
-      <StyledSpan>{quote.author}</StyledSpan>
+    <StyledSection isVisible={!!quote.body}>
+      {quote.body ? 
+        <BorderContainer>
+          <StyledParagraph>{quote.body}</StyledParagraph>
+          <StyledSpan>{quote.title}</StyledSpan>
+        </BorderContainer>
+        : <Spinner size={50} />}
     </StyledSection>
   );
 };

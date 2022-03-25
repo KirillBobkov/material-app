@@ -12,14 +12,16 @@ import PostsStore from '../../state/PostsStore';
 import { IPost } from '../../interfaces/IPost';
 
 const StyledUl = styled.ul`
+  position: relative; 
   display: flex;
   box-sizing: border-box;
   list-style: none;
-  padding: 0 10px;
+  padding: 0 40px;
+  margin: 0 auto;
   margin-bottom: 80px;
   flex-wrap: wrap;
-  gap: 40px;
   justify-content: center;
+  max-width: 1200px;
 `;
 
 const Posts = (): JSX.Element => {

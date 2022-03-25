@@ -42,7 +42,7 @@ const StyledSpinner = styled.div<Props>`
 `;
 
 const Spinner = ({ size }: Props): JSX.Element => {
-  return <StyledSpinner size={size} className="spinner" />;
+  return <StyledSpinner size={size} />;
 };
 
 export default Spinner;
