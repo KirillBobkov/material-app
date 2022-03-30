@@ -1,45 +1,115 @@
 import { ImageCard } from '../interfaces/ImageCard';
 
 export const smallImages: ImageCard[] = [
-  { id: '21fds', background: 'https://picsum.photos/id/233/200/200' },
-  { id: '22fdg', background: 'https://picsum.photos/id/232/200/200' },
-  { id: '33fdg', background: 'https://picsum.photos/id/234/200/200' },
-  { id: '24fdgbv', background: 'https://picsum.photos/id/235/200/200' },
-  { id: '2yt5', background: 'https://picsum.photos/id/237/200/200' },
-  { id: '2vcxb6', background: 'https://picsum.photos/id/238/200/200' },
-  { id: '27nb', background: 'https://picsum.photos/id/239/200/200' },
-  { id: '2n8', background: 'https://picsum.photos/id/240/200/200' },
-  { id: 'yttyu29', background: 'https://picsum.photos/id/241/200/200' },
-  { id: '2tyur', background: 'https://picsum.photos/id/242/200/200' },
-  { id: '2ytu1', background: 'https://picsum.photos/id/243/200/200' },
-  { id: '22ytu3', background: 'https://picsum.photos/id/244/200/200' },
-  { id: '2tu234', background: 'https://picsum.photos/id/233/200/200' },
-  { id: '2324', background: 'https://picsum.photos/id/267/200/200' },
-  { id: '27tyu68', background: 'https://picsum.photos/id/247/200/200' },
-  { id: '29tu0', background: 'https://picsum.photos/id/248/200/200' },
-  { id: 'ty2et', background: 'https://picsum.photos/id/249/200/200' },
-  { id: '2769', background: 'https://picsum.photos/id/250/200/200' },
-  { id: '2fjhg', background: 'https://picsum.photos/id/251/200/200' },
+  {
+    'id': 'id_kdsjfksjdf0',
+    'background': 'http://placekitten.com/400/400',
+  },
+  {
+    'id': 'id_kdsjfksjdf1',
+    'background': 'http://placekitten.com/401/400',
+  },
+  {
+    'id': 'id_kdsjfksjdf2',
+    'background': 'http://placekitten.com/402/400',
+  },
+  {
+    'id': 'id_kdsjfksjdf3',
+    'background': 'http://placekitten.com/403/400',
+  },
+  {
+    'id': 'id_kdsjfksjdf4',
+    'background': 'http://placekitten.com/404/400',
+  },
+  {
+    'id': 'id_kdsjfksjdf5',
+    'background': 'http://placekitten.com/405/400',
+  },
+  {
+    'id': 'id_kdsjfksjdf6',
+    'background': 'http://placekitten.com/406/400',
+  },
+  {
+    'id': 'id_kdsjfksjdf7',
+    'background': 'http://placekitten.com/407/400',
+  },
+  {
+    'id': 'id_kdsjfksjdf8',
+    'background': 'http://placekitten.com/408/400',
+  },
+  {
+    'id': 'id_kdssjdf0',
+    'background': 'http://placekitten.com/390/400',
+  },
+  {
+    'id': 'id_kdssjdf1',
+    'background': 'http://placekitten.com/391/400',
+  },
+  {
+    'id': 'id_kdssjdf2',
+    'background': 'http://placekitten.com/392/400',
+  },
+  {
+    'id': 'id_kdssjdf3',
+    'background': 'http://placekitten.com/393/400',
+  },
+  {
+    'id': 'id_kdssjdf4',
+    'background': 'http://placekitten.com/394/400',
+  },
+  {
+    'id': 'id_kdssjdf5',
+    'background': 'http://placekitten.com/395/400',
+  },
+  {
+    'id': 'id_kdssjdf6',
+    'background': 'http://placekitten.com/396/400',
+  },
+  {
+    'id': 'id_kdssjdf7',
+    'background': 'http://placekitten.com/397/400',
+  },
+  {
+    'id': 'id_kdssjdf8',
+    'background': 'http://placekitten.com/398/400',
+  },
 ];
 
 export const bidImages: ImageCard[] = [
-  { id: 'fhgdh1', background: 'https://picsum.photos/id/232/400/400' },
-  { id: 'hgitds1', background: 'https://picsum.photos/id/233/400/400' },
-  { id: '1rtykj', background: 'https://picsum.photos/id/234/400/400' },
-  { id: '1oiuyj', background: 'https://picsum.photos/id/235/400/400' },
-  { id: 'cvbxfg1', background: 'https://picsum.photos/id/237/400/400' },
-  { id: '1hgf', background: 'https://picsum.photos/id/238/400/400' },
-  { id: '1fghfm', background: 'https://picsum.photos/id/239/400/400' },
-  { id: '56751', background: 'https://picsum.photos/id/240/400/400' },
-  { id: 'fghr51', background: 'https://picsum.photos/id/241/400/400' },
-  { id: '1hgcx', background: 'https://picsum.photos/id/242/400/400' },
-  { id: '1edrfgb', background: 'https://picsum.photos/id/243/400/400' },
-  { id: 'fhdfg1', background: 'https://picsum.photos/id/244/400/400' },
-  { id: '1jhbvc', background: 'https://picsum.photos/id/267/400/400' },
-  { id: '1sdyjhk', background: 'https://picsum.photos/id/279/400/400' },
-  { id: '1erst', background: 'https://picsum.photos/id/247/400/400' },
-  { id: 'fghdsf1', background: 'https://picsum.photos/id/248/400/400' },
-  { id: '567hjg1', background: 'https://picsum.photos/id/249/400/400' },
-  { id: '5671', background: 'https://picsum.photos/id/250/400/400' },
-  { id: '145ery', background: 'https://picsum.photos/id/251/400/400' },
+  {
+    'id': 'id_kdssjdf0',
+    'background': 'http://placekitten.com/490/500',
+  },
+  {
+    'id': 'id_kdssjdf1',
+    'background': 'http://placekitten.com/491/500',
+  },
+  {
+    'id': 'id_kdssjdf2',
+    'background': 'http://placekitten.com/492/500',
+  },
+  {
+    'id': 'id_kdssjdf3',
+    'background': 'http://placekitten.com/493/500',
+  },
+  {
+    'id': 'id_kdssjdf4',
+    'background': 'http://placekitten.com/494/500',
+  },
+  {
+    'id': 'id_kdssjdf5',
+    'background': 'http://placekitten.com/495/500',
+  },
+  {
+    'id': 'id_kdssjdf6',
+    'background': 'http://placekitten.com/496/500',
+  },
+  {
+    'id': 'id_kdssjdf7',
+    'background': 'http://placekitten.com/497/500',
+  },
+  {
+    'id': 'id_kdssjdf8',
+    'background': 'http://placekitten.com/498/500',
+  },
 ];

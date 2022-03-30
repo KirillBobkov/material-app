@@ -30,6 +30,7 @@ const BorderContainer = styled.div`
   padding: 40px;
   color: white;
   background-color: inherit;
+  width: 100%;
 
   &:before {
     padding: 10px;
