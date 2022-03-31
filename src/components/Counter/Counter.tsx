@@ -8,24 +8,25 @@ interface Props {
 
 const StyledCounter  = styled.div`
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   padding: 20px;
-
-  h6, h1 {
-    margin: 0;
-  }
-
-  h6 {
-    margin-bottom: 20px;
-  }
+  width: 100%;
+  margin-bottom: 40px;
+  margin-top: 40px;
+  background-color: #f1f1f1;
+  box-sizing: border-box;
+  box-shadow: 0 4px 12px rgb(0, 0, 0, 0.12);
+  font-weight: 700;
+  font-size: 20px;
+  font-family: Poppins-Regular;
+  color: #000000;
 `;
 
 const Counter = ({ count }: Props): JSX.Element => (
   <StyledCounter>
-    <h6>TOTAL POSTS</h6>
-    <h2>{`${count}`}</h2>
+    <span>TOTAL POSTS</span>
+    <span>{`${count}`}</span>
   </StyledCounter>
 );
 

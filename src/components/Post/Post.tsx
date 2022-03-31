@@ -9,7 +9,6 @@ import PostsStore from '../../state/PostsStore';
 import Button from '../Button';
 import Spinner from '../Spinner';
 
-
 const StyledLi = styled.li<{ isFetching: boolean }>`
   position: relative;
   display: flex;
@@ -25,13 +24,12 @@ const StyledLi = styled.li<{ isFetching: boolean }>`
 
 const ButtonContainer = styled.div`
   padding: 20px;
-  text-align: left;
+  text-align: right;
 `;
 
 const TextArea = styled.textarea`
   display: block;
   width: 100%;
-  height: 200px;
   padding: 20px;
   font-family: Poppins-Regular;
   font-size: 14px;
@@ -51,7 +49,6 @@ const TextArea = styled.textarea`
 `;
 
 const TextAreaTitle = styled(TextArea)`
-  height: 65px;
   color: #000000;
   background-color: #f1f1f1;
   font-size: 30px;
@@ -61,24 +58,6 @@ const TextAreaTitle = styled(TextArea)`
     color: #000000;
     background-color: #f1f1f1;
   }
-`;
-
-const PostTitle = styled.h3`
-  padding: 20px;
-  margin: 0;
-  color: #000000;
-  background-color: #f1f1f1;
-  font-family: Poppins-Regular;
-  font-size: 30px;
-`;
-
-const PostContent = styled.p`
-  padding: 20px;
-  margin: 0;
-  color: #000000;
-  background-color: #f1f1f1;
-  font-family: Poppins-Regular;
-  font-size: 14px;
 `;
 
 interface Props {
@@ -116,30 +95,25 @@ const Post = ({ post }: Props ): JSX.Element => {
     setCurrentPost({ ...currentPost, title: post.title, body: post.body });
   };
 
+  const onHandleChangeTitle = (e: any): void => { 
+    if (e.target.value.length < 30 ) setCurrentPost({ ...currentPost, title: e.target.value }); 
+  };
+
+  const onHandleChangeBody = (e: any): void => { 
+    if (e.target.value.length < 400 ) setCurrentPost({ ...currentPost, body: e.target.value }); 
+  };
+
   return (
     <StyledLi isFetching={isFetching}>
-      {isEditing ? 
-        <div>
-          <TextAreaTitle
-            value={currentPost.title}
-            onChange={(e: any): void => { if (e.target.value.length < 30 ) setCurrentPost({ ...currentPost, title: e.target.value }); }}
-          />
-          <TextArea
-            value={currentPost.body}
-            onChange={(e: any): void => { if (e.target.value.length < 400 ) setCurrentPost({ ...currentPost, body: e.target.value }); }}
-          />
-        </div>
-        :
-        <div>
-          <PostTitle>{currentPost.title}</PostTitle>
-          <PostContent>{currentPost.body}</PostContent>
-        </div>
-      }
+      <div>
+        <TextAreaTitle rows={2} disabled={!isEditing} value={currentPost.title} onChange={onHandleChangeTitle} />
+        <TextArea rows={5} disabled={!isEditing} value={currentPost.body} onChange={onHandleChangeBody} />
+      </div>
       <ButtonContainer>
-        {!isEditing && <Button color="#7a7a7a" onClick={onEditPost}>Edit post</Button>}
-        {isEditing && <Button color="#7a7a7a" onClick={onSaveChanges}>Save post</Button>}
-        {isEditing && <Button color="#afafaf" onClick={onCancelEditing}>Cancel changes</Button>}
         <Button onClick={() => deletePost(post.id)}>Delete post</Button>
+        {!isEditing && <Button color="#7a7a7a" onClick={onEditPost}>Edit post</Button>}
+        {isEditing && <Button color="#afafaf" onClick={onCancelEditing}>Cancel changes</Button>}
+        {isEditing && <Button color="#7a7a7a" onClick={onSaveChanges}>Save post</Button>}
       </ButtonContainer>
       {isFetching && <Spinner size={50} />}
     </StyledLi>

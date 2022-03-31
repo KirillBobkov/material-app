@@ -17,12 +17,15 @@ const StyledUl = styled.ul`
   display: flex;
   box-sizing: border-box;
   list-style: none;
-  padding: 0 25px;
-  margin: 0 auto;
-  margin-bottom: 80px;
+  padding: 0;
   flex-wrap: wrap;
   justify-content: center;
-  max-width: 1200px;
+`;
+
+const PostsContainer = styled.div`
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 25px;
 `;
 
 const Posts = (): JSX.Element => {
@@ -34,19 +37,22 @@ const Posts = (): JSX.Element => {
   }, []);
   
   return (
-    <div>
+    <>
       <AboutBlock
         text="Read posts"
         scrollToDirection="bottom"
         title="Let's see posts!" 
         description="This is a page where you could edit, delete or iupdate posts." 
       />
-      {!!postsLength && <Counter count={postsLength} />}
-      {posts.length 
-        ?  <StyledUl>{posts.map((post: IPost): JSX.Element => <Post key={post.id} post={post} />)}</StyledUl>
-        :  <Spinner size={50}/>}
+      <PostsContainer>
+        {!!postsLength && <Counter count={postsLength} />}
+        {posts.length 
+          ?  <StyledUl>{posts.map((post: IPost): JSX.Element => <Post key={post.id} post={post} />)}</StyledUl>
+          :  <Spinner size={50}/>}
+   
+      </PostsContainer>
       <Quote />
-    </div>
+    </>
   );
 };
   

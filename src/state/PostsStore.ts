@@ -23,7 +23,7 @@ class PostsStore {
   *fetchPosts() {
     try {
       const { data }: { data: IPost[] } = yield api.getPosts();
-      this.posts = data;
+      this.posts = data.slice(0, 12);
     } catch (e: any) {
       this.error = e.message || 'Error while fetching post';
     }
