@@ -1,0 +1,88 @@
+.carousel {
+  padding: 60px 0;
+  background-color: var(--backgroundAccent);
+}
+
+.carouselWrapper {
+  position: relative;
+  display: flex;
+  overflow: hidden;
+}
+
+.carouselRowContainer {
+  flex: 1 1 0px;
+  height: 100%;
+  max-width: 100%;
+}
+
+.carouselRow {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+  gap: 20px;
+  padding: 0 20px;
+}
+
+.carouselRow::-webkit-scrollbar {
+  display: none;
+}
+
+.carouselCard {
+  max-width: 90%;
+  flex: 0 0 auto;
+}
+
+.carouselActions {
+  width: 1px;
+}
+
+.carouselArrowButtonLeft,
+.carouselArrowButtonRight {
+  position: absolute;
+  content: "";
+  width: 5em;
+  height: 100%;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.carouselArrowButtonLeft {
+  left: 0;
+  background: var(--dark-gradient-to-left);
+}
+
+.carouselArrowButtonRight {
+  right: 0;
+  background: var(--dark-gradient-to-right);
+}
+
+.carouselArrowButtonRight::before,
+.carouselArrowButtonLeft::before {
+  position: absolute;
+  content: "";
+  top: 50%;
+  width: 15px;
+  height: 15px;
+  border-right: 3px solid  var(--third);
+  border-bottom: 3px solid  var(--third);
+}
+
+.carouselArrowButtonRight::before {
+  right: 49px;
+  transform: rotate(-45deg);
+}
+
+.carouselArrowButtonLeft::before {
+  left: 49px;
+  transform: rotate(135deg);
+}
+
+@media (pointer:coarse) and (max-width:  600px){
+  .carouselArrowButtonRight,
+  .carouselArrowButtonLeft {
+    display: none;
+  }
+}

@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
+import { AboutBlock } from '../../components/AboutBlock';
 
 import Quote from '../../components/Quote';
 import SquareImagesCarousel from '../../components/SquareImagesCarousel';
@@ -12,11 +13,22 @@ const Home = (): JSX.Element => {
 
   return (
     <>
+      <AboutBlock 
+        text="See images"
+        scrollToDirection="bottom"
+        title="Welcome" 
+        description="Good time to you! This is a demo project for testing some technologies, 
+        different approaches and other intresting features of frontend development." 
+      />
+      <SquareImagesCarousel cards={bidImages} />
       <Quote />
-      <SquareImagesCarousel cardSize={400} gap={40} cards={bidImages} />
-      <Quote />
-      <SquareImagesCarousel cardSize={200} gap={20} cards={smallImages} />
-      <Quote />
+      <SquareImagesCarousel cards={smallImages} />
+      <AboutBlock 
+        text="Go to the top"
+        scrollToDirection="top"
+        title="Finish" 
+        description="That's all for this page. Let's go to the top?" 
+      />
     </>
   );
 };

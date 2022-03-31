@@ -6,7 +6,6 @@ type Props = {
 } & HTMLAttributes<HTMLButtonElement>;
 
 const StyledButton = styled.button<Props>`
-
   padding: 10px 20px;
   margin-right: 10px;
   margin-bottom: 10px;

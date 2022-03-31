@@ -26,7 +26,6 @@ const NotAuthorized = (): JSX.Element => (
   </>
 );
 
-
 export default NotAuthorized;
 
 

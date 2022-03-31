@@ -30,6 +30,7 @@ a {
 * {
   scrollbar-width: thin;
   scrollbar-color: black #dbdbdb;
+  scroll-behavior: smooth;
 }
 
 /* Works on Chrome, Edge, and Safari */

@@ -10,13 +10,14 @@ import Quote from '../../components/Quote';
 import PostsStore from '../../state/PostsStore';
 
 import { IPost } from '../../interfaces/IPost';
+import { AboutBlock } from '../../components/AboutBlock';
 
 const StyledUl = styled.ul`
   position: relative; 
   display: flex;
   box-sizing: border-box;
   list-style: none;
-  padding: 0 40px;
+  padding: 0 25px;
   margin: 0 auto;
   margin-bottom: 80px;
   flex-wrap: wrap;
@@ -34,7 +35,12 @@ const Posts = (): JSX.Element => {
   
   return (
     <div>
-      <Quote />
+      <AboutBlock
+        text="Read posts"
+        scrollToDirection="bottom"
+        title="Let's see posts!" 
+        description="This is a page where you could edit, delete or iupdate posts." 
+      />
       {!!postsLength && <Counter count={postsLength} />}
       {posts.length 
         ?  <StyledUl>{posts.map((post: IPost): JSX.Element => <Post key={post.id} post={post} />)}</StyledUl>

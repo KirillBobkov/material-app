@@ -20,7 +20,7 @@ const StyledSection  = styled.section<StyledSectionType>`
   padding: 40px;
   margin: 0 auto;
   width: 100%;
-  min-height: 250px;
+  min-height: 400px;
    ${props => props.isVisible ? 'background-color: #4d4d4d;' : ''}
   text-align: center;
 `;
@@ -35,7 +35,7 @@ const BorderContainer = styled.div`
   &:before {
     padding: 10px;
     position: absolute;
-    top: 30px;
+    top: 95px;
     left: 20px;
     content: '❝';
     background-color: inherit;
@@ -45,7 +45,7 @@ const BorderContainer = styled.div`
   &:after {
     padding: 10px;
     position: absolute;
-    bottom: 10px;
+    bottom: 70px;
     right: 20px;
     content: '❜❜';
     background-color: inherit;
@@ -76,12 +76,17 @@ const getInitialState = (): IQuote =>  ({
   body: '',
 });
 
+const getRandomNumber = (min: number, max: number) => {
+  return Math.round(min - 0.5 + Math.random() * (max - min + 1));
+};
+
 const Quote = (): JSX.Element => {
   const [quote, setQuote] = useState<IQuote>(getInitialState());
+  const isQuoteReady = !!quote.body && !!quote.title;
 
   useEffect(() => {
     const fetchQuote = async () =>  {
-      const randomNumber = Math.round(40 - 0.5 + Math.random() * (40 - 1 + 1));
+      const randomNumber = getRandomNumber(1, 40);
       const res: AxiosResponse<IQuote>  = await api.quotes.getQuote(randomNumber);
       setQuote(res.data);
     };
@@ -90,8 +95,8 @@ const Quote = (): JSX.Element => {
   }, []);
 
   return (
-    <StyledSection isVisible={!!quote.body}>
-      {quote.body ? 
+    <StyledSection isVisible={isQuoteReady}>
+      {isQuoteReady ? 
         <BorderContainer>
           <StyledParagraph>{quote.body}</StyledParagraph>
           <StyledSpan>{quote.title}</StyledSpan>
