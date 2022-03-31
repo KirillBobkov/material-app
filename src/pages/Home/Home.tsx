@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { AboutBlock } from '../../components/AboutBlock';
 
 import Quote from '../../components/Quote';
