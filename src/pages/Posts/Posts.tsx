@@ -49,7 +49,6 @@ const Posts = (): JSX.Element => {
         {posts.length 
           ?  <StyledUl>{posts.map((post: IPost): JSX.Element => <Post key={post.id} post={post} />)}</StyledUl>
           :  <Spinner size={50}/>}
-   
       </PostsContainer>
       <Quote />
     </>

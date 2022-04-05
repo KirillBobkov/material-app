@@ -18,7 +18,7 @@ const rotate = keyframes`
 const StyledSpinner = styled.div<Props>`
   &, &::before, &::after {
     content:'';
-    display:block;
+    display: block;
     border: 4px solid transparent;
     border-radius: 50%;
     animation: ${rotate} infinite linear 1s;
@@ -27,12 +27,12 @@ const StyledSpinner = styled.div<Props>`
 
   width: ${props => props.size}px;
   height: ${props => props.size}px;
-  border-top-color: black;
+  border-top-color: #436e9d;
   top: calc(50% - 25px);
   left: calc(50% - ${props => props.size * 0.5}px);
 
   &::before {
-    border-top-color: black;
+    border-top-color: #436e9d;
     animation-duration: 4s;
     top: 2px;
     bottom: 2px;

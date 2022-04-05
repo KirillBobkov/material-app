@@ -19,12 +19,19 @@ const StyledLi = styled.li<{ isFetching: boolean }>`
   background-color: #f1f1f1;
   box-sizing: border-box;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  border-radius: 10px;
+  overflow: hidden;
   ${props => props.isFetching ? 'filter: brightness(90%);' : ''}
 `;
 
 const ButtonContainer = styled.div`
   padding: 20px;
   text-align: right;
+
+  & button {
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
 `;
 
 const TextArea = styled.textarea`
@@ -110,10 +117,10 @@ const Post = ({ post }: Props ): JSX.Element => {
         <TextArea rows={5} disabled={!isEditing} value={currentPost.body} onChange={onHandleChangeBody} />
       </div>
       <ButtonContainer>
-        <Button onClick={() => deletePost(post.id)}>Delete post</Button>
-        {!isEditing && <Button color="#7a7a7a" onClick={onEditPost}>Edit post</Button>}
-        {isEditing && <Button color="#afafaf" onClick={onCancelEditing}>Cancel changes</Button>}
-        {isEditing && <Button color="#7a7a7a" onClick={onSaveChanges}>Save post</Button>}
+        <Button color="#f35656" onClick={() => deletePost(post.id)}>Delete post</Button>
+        {!isEditing && <Button color="#436e9d" onClick={onEditPost}>Edit post</Button>}
+        {isEditing && <Button color="#a3a3a3" onClick={onCancelEditing}>Cancel changes</Button>}
+        {isEditing && <Button color="#70c970" onClick={onSaveChanges}>Save post</Button>}
       </ButtonContainer>
       {isFetching && <Spinner size={50} />}
     </StyledLi>

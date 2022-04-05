@@ -12,13 +12,20 @@ type Props = {
 const StyledInput = styled.input<{ isInvalid: boolean }>`
   width: 100%;
   padding: 10px;
-  border: 1px solid gray;
+  border: 1px solid #e1f4ff;
+  background: #e1f4ff; 
   font-size: 14px;
-  border-radius: 0;
+  border-radius: 10px;
   ${props => props.isInvalid ? 'border: 1px solid red;' : ''}
+  color: #436e9d;
 
   &:focus {
-    outline: 1px solid #000000;
+    outline: 1px solid #436e9d;
+  }
+
+  &::placeholder {
+    font-size: 14px;
+    color: #436e9d;
   }
 `;
 
@@ -35,7 +42,7 @@ const StyledLabel = styled.label`
 `;
 
 const LabelMessage = styled.span`
-  color: #000000;
+  color: #436e9d;
   font-size: 14px;
 `;
 

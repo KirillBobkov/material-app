@@ -10,10 +10,9 @@ const AboutBlockWrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  min-height: 366px;
   padding: 60px 25px;
   gap: 40px;
-  background-color: #4d4d4d;
+  background: linear-gradient(90deg, #538ac6 0%, #9bd0ea 100%);
 
   @media (max-width: 600px) {
     min-height: 338px;
@@ -56,8 +55,8 @@ const AboutBlockDescription = styled.div`
 `;
 
 interface Props {
-  title: string
-  description: string;
+  title?: string
+  description?: string;
   scrollToDirection: 'top' | 'bottom';
   text: string;
 }
@@ -78,9 +77,9 @@ export const AboutBlock = ({ title, description, scrollToDirection, text }: Prop
   
   return (
     <AboutBlockWrapper ref={blockRef}>
-      <AboutBlockTitle>{title}</AboutBlockTitle>
-      <AboutBlockDescription>{description}</AboutBlockDescription>
-      <Button onClick={scrollTo}>{text}</Button>
+      {title && <AboutBlockTitle>{title}</AboutBlockTitle>}
+      {description && <AboutBlockDescription>{description}</AboutBlockDescription>}
+      <Button color="#f7b32b" onClick={scrollTo}>{text}</Button>
     </AboutBlockWrapper>
   );
 };

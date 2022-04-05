@@ -18,7 +18,6 @@ body {
   padding: 0;
   margin: 0;
   font-family: Poppins-Regular;
-  background-color: #dbdbdb;
 }
 
 a {
@@ -28,14 +27,14 @@ a {
 
 /* Works on Firefox */
 * {
-  scrollbar-width: thin;
-  scrollbar-color: black #dbdbdb;
+  scrollbar-width: 2px;
+  scrollbar-color: #949494 #dbdbdb;
   scroll-behavior: smooth;
 }
 
 /* Works on Chrome, Edge, and Safari */
 *::-webkit-scrollbar {
-  width: 5px;
+  width: 2px;
 }
 
 *::-webkit-scrollbar-track {
@@ -43,7 +42,7 @@ a {
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: black;
+  background-color: #949494;
 }
 
 @font-face {

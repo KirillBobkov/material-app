@@ -10,7 +10,9 @@ const StyledCard = styled.div`
   background: #ffffff;
   box-sizing: border-box;
   padding: 20px;
+  border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  color: #436e9d;
 `;
 
 const StyledCardHeader = styled.div`
@@ -53,7 +55,7 @@ const ProfileCard = (): JSX.Element  => {
         <Avatar
           width="40"
           height="40"
-          src="https://w7.pngwing.com/pngs/178/595/png-transparent-user-profile-computer-icons-login-user-avatars.png"
+          src="https://img.icons8.com/dusk/64/000000/user.png"
           alt="User photo"
         />
         {profile ? <span>{`${profile.firstName} ${profile.lastName}`}</span> : ''}

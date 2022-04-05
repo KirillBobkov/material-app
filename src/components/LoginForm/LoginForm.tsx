@@ -26,16 +26,24 @@ const getInitialState = (): ILogin =>  ({
 
 const StyledForm = styled.form<{ isFetching: boolean }>`
   min-height: 230px;
-  width: 300px;
+  width: 310px;
   padding: 20px;
   background: #ffffff;
   box-sizing: border-box;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  border-radius: 10px;
   ${props => props.isFetching ? 'filter: brightness(90%);' : ''}
 `;
 
 const FormFooter = styled.div`
   margin-top: 10px;
+`;
+
+const FormTitle = styled.h2`
+  text-align: center;
+  margin: 0;
+  margin-bottom: 15px;
+  color: #436e9d;
 `;
 
 const LoginForm = ({ closeForm }: Props): JSX.Element => {
@@ -66,6 +74,7 @@ const LoginForm = ({ closeForm }: Props): JSX.Element => {
 
   return (
     <StyledForm isFetching={isFetching} onSubmit={onSubmit}>
+      <FormTitle>Login</FormTitle>
       <Input
         label="E-mail"
         placeholder="Enter your e-mail"

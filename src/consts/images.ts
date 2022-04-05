@@ -1,3 +1,4 @@
+import { Card3 } from '../components/OrderCard3';
 import { ImageCard } from '../interfaces/ImageCard';
 
 export const smallImages: ImageCard[] = [
@@ -111,5 +112,50 @@ export const bidImages: ImageCard[] = [
   {
     'id': 'id_kdssjdf8',
     'background': 'http://placekitten.com/498/500',
+  },
+];
+
+export const bestsellers: Card3[] = [
+  {
+    background: 'https://placekitten.com/200/250?1',
+    title: 'Kitten 1',
+    description: '1x Shrimp Crunch Roll (8 pc) 1x California Roll (8 pc)',
+    price: '$15.00',
+    link: 'https://placekitten.com/200/250?1',
+  },
+  {
+    background: 'https://placekitten.com/200/250?2',
+    title: 'Kitten 2',
+    description: '1x Shrimp Crunch Roll (8 pc) 1x California Roll (8 pc)',
+    price: '$15.00',
+    link: 'https://placekitten.com/200/250?2',
+  },
+  {
+    background: 'https://placekitten.com/200/250?3',
+    title: 'Kitten 3',
+    description: '1x Shrimp Crunch Roll (8 pc) 1x California Roll (8 pc)',
+    price: '$15.00',
+    link: 'https://placekitten.com/200/250?3',
+  },
+  {
+    background: 'https://placekitten.com/200/250?4',
+    title: 'Kitten 4',
+    description: '1x Shrimp Crunch Roll (8 pc) 1x California Roll (8 pc)',
+    price: '$15.00',
+    link: 'https://placekitten.com/200/250?4',
+  },
+  {
+    background: 'https://placekitten.com/200/250?5',
+    title: 'Kitten 5',
+    description: '1x Shrimp Crunch Roll (8 pc) 1x California Roll (8 pc)',
+    price: '$15.00',
+    link: 'https://placekitten.com/200/250?5',
+  },
+  {
+    background: 'https://placekitten.com/200/250?6',
+    title: 'Kitten 6',
+    description: '1x Shrimp Crunch Roll (8 pc) 1x California Roll (8 pc)',
+    price: '$15.00',
+    link: 'https://placekitten.com/200/250?6',
   },
 ];

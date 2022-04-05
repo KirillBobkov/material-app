@@ -30,11 +30,19 @@ const StyledForm = styled.form<{ isFetching: boolean }>`
   box-sizing: border-box;
   padding: 20px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  border-radius: 10px;
   ${props => props.isFetching ? 'filter: brightness(90%);' : ''}
 `;
 
 const FormFooter = styled.div`
   margin-top: 10px;
+`;
+
+const FormTitle = styled.h2`
+  text-align: center;
+  margin: 0;
+  margin-bottom: 15px;
+  color: #436e9d;
 `;
 
 const RegisterForm = ({ closeForm }: Props): JSX.Element  => {
@@ -62,6 +70,7 @@ const RegisterForm = ({ closeForm }: Props): JSX.Element  => {
 
   return (
     <StyledForm isFetching={isFetching} onSubmit={onSubmit}>
+      <FormTitle>Register</FormTitle>
       <Input
         label="First name"
         invalidMessage={errors?.firstName || ''}

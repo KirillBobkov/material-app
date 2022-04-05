@@ -20,9 +20,10 @@ const StyledSection = styled.section`
 const Card = styled.img`
   height: 440px;
   width: 100%;
-  overflow: hidden;
   object-fit: cover;
-
+  border-radius: 10px;
+  box-shadow: 0px 4px 18px 0px rgba(34, 60, 80, 0.2);
+  
   &:last-child {
     margin-right: 0;
   }

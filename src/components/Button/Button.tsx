@@ -7,8 +7,6 @@ type Props = {
 
 const StyledButton = styled.button<Props>`
   padding: 10px 20px;
-  margin-right: 10px;
-  margin-bottom: 10px;
   font-family: Poppins-Regular;
   font-size: 14px;
   line-height: 16px;
@@ -17,9 +15,10 @@ const StyledButton = styled.button<Props>`
   white-space: nowrap;
   text-overflow: ellipsis;
   color: white;
-  background: ${(props) => props.color || '#000000'};
+  background: ${(props) => props.color || '#436e9d'};
   cursor: pointer;
   border: none;
+  border-radius: 10px;
   overflow: hidden;
   transition: opacity .5s;
   

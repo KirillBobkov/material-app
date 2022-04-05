@@ -6,7 +6,6 @@
 .carouselWrapper {
   position: relative;
   display: flex;
-  overflow: hidden;
 }
 
 .carouselRowContainer {

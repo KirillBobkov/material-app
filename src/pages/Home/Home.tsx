@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
 import { AboutBlock } from '../../components/AboutBlock';
+import Bestsellers from '../../components/Bestsellers';
 
 import Quote from '../../components/Quote';
 import SquareImagesCarousel from '../../components/SquareImagesCarousel';
 
-import { bidImages, smallImages } from '../../consts/images';
+import { bestsellers, bidImages } from '../../consts/images';
 
 const Home = (): JSX.Element => {
   useEffect((): void => { 
@@ -20,14 +21,12 @@ const Home = (): JSX.Element => {
         description="Good time to you! This is a demo project for testing some technologies, 
         different approaches and other intresting features of frontend development." 
       />
-      <SquareImagesCarousel cards={bidImages} />
+      <Bestsellers cards={bestsellers} />
       <Quote />
-      <SquareImagesCarousel cards={smallImages} />
+      <SquareImagesCarousel cards={bidImages} />
       <AboutBlock 
         text="Go to the top"
         scrollToDirection="top"
-        title="Finish" 
-        description="That's all for this page. Let's go to the top?" 
       />
     </>
   );

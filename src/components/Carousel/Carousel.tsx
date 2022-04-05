@@ -9,7 +9,7 @@ interface Props<T> {
 const CarouselWrapper = styled.div`
   position: relative;
   display: flex;
-  overflow: hidden;
+  overflow-x: hidden;
 `;
 
 const CarouselRowContainer = styled.div`
@@ -22,7 +22,8 @@ const CarouselRow = styled.div`
   display: flex;
   height: 100%;
   width: 100%;
-  overflow: auto;
+  overflow-x: auto;
+  overflow-y: visible;
   scrollbar-width: none;
   scroll-behavior: smooth;
   padding: 0 25px;

@@ -6,7 +6,7 @@ const StyledTitle = styled.h1`
   margin: 0;
   margin-top: 10vh;
   font-size: 10vh;
-  color: black;
+  color: #436e9d;
 `;
 
 const StyledDescription = styled.h2`
@@ -15,7 +15,7 @@ const StyledDescription = styled.h2`
   margin-bottom: 40px;
   padding: 0 20px;
   font-size: 2vh;
-  color: black;
+  color: #436e9d;
 `;
 
 const NotAuthorized = (): JSX.Element => (
