@@ -2,10 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { Carousel } from '../Carousel';
-import { Card3, OrderCard3Component } from '../OrderCard3';
+import { BestsellerCard } from '../BestsellerCard';
+
+import { IBestsellerCard } from '../../interfaces/IBestsellerCard';
 
 interface CarouselProps {
-  cards: Card3[];
+  cards: IBestsellerCard[];
 }
 
 const StyledSection = styled.section`
@@ -22,8 +24,8 @@ export default function Bestsellers({ cards }: CarouselProps) {
     <StyledSection>
       <Carousel 
         data={cards}
-        renderItem={(card: Card3): JSX.Element => (
-          <OrderCard3Component 
+        renderItem={(card: IBestsellerCard): JSX.Element => (
+          <BestsellerCard 
             key={card.background}
             card={card} 
           />

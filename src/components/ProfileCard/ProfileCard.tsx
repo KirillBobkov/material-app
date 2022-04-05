@@ -32,10 +32,12 @@ const StyledRow = styled.div`
 
 const StyledValue = styled.span`
   flex: 1 0 50%;
+  color: #000000;
 `;
 
 const StyledKey = styled(StyledValue)`
   font-weight: 700;
+  color: #436e9d;
 `;
 
 const ProfileCard = (): JSX.Element  => {

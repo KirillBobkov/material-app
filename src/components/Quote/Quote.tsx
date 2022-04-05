@@ -21,7 +21,7 @@ const StyledSection  = styled.section<StyledSectionType>`
   margin: 0 auto;
   width: 100%;
   min-height: 400px;
-   ${props => props.isVisible ? 'background: linear-gradient(90deg,#538ac6 0%,#9bd0ea 100%);' : ''}
+   ${props => props.isVisible ? 'background: linear-gradient(90deg,#79b9ff 0%,#c2ebff 100%);' : ''}
   text-align: center;
 `;
 

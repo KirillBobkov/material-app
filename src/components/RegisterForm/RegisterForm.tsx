@@ -100,7 +100,7 @@ const RegisterForm = ({ closeForm }: Props): JSX.Element  => {
         placeholder="Enter your password"
         onChange={(e: any ): void => { setRegisterData({ ...registerData, password: e.target.value }); }}
       />
-      <FormFooter><Button>Sign up</Button></FormFooter>
+      <FormFooter><Button color="#70c970">Sign up</Button></FormFooter>
       {isFetching && <Spinner size={50} />}
     </StyledForm>
   );      

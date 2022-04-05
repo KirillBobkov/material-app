@@ -1,5 +1,5 @@
-import { Card3 } from '../components/OrderCard3';
 import { ImageCard } from '../interfaces/ImageCard';
+import { IBestsellerCard } from '../interfaces/IBestsellerCard';
 
 export const smallImages: ImageCard[] = [
   {
@@ -115,7 +115,7 @@ export const bidImages: ImageCard[] = [
   },
 ];
 
-export const bestsellers: Card3[] = [
+export const bestsellers: IBestsellerCard[] = [
   {
     background: 'https://placekitten.com/200/250?1',
     title: 'Kitten 1',

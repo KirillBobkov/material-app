@@ -2,27 +2,20 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export interface Card3 {
-  background: string;
-  title: string;
-  description: string;
-  price: string;
-  link: string;
-}
+import { IBestsellerCard } from '../../interfaces/IBestsellerCard';
 
 interface Props {
-  card: Card3;
+  card: IBestsellerCard;
   className?: string;
 }
 
-const OrderCard3 = styled.div`
+const OrderCard = styled.div`
   display: flex;
   height: 100%;
   height: 440px;
   width: 700px;
   border-radius: 10px;
   color: white;
-  box-shadow: 0px 4px 18px 0px rgba(34, 60, 80, 0.2);
 
   @media (max-width: 1024px) {
     flex-direction: column-reverse;
@@ -31,13 +24,13 @@ const OrderCard3 = styled.div`
   }
 `;
 
-const OrderCard3Content = styled.div`
+const OrderCardContent = styled.div`
   display: flex;
   flex-direction: column;
   width: 50%;
   padding: 40px;
   border-radius: 10px 0 0 10px;
-  background-color: #f1f1f1;
+  background-color: #e5ffe2;
 
   @media (max-width: 1024px) {
     width: 100%;
@@ -46,7 +39,7 @@ const OrderCard3Content = styled.div`
   }
 `;
 
-const OrderCard3Title = styled.h2`
+const OrderCardTitle = styled.h2`
   font-size: 30px;
   line-height: 39px;
   text-transform: uppercase;
@@ -61,7 +54,7 @@ const OrderCard3Title = styled.h2`
   }
 `;
 
-const OrderCard3Description = styled.p`
+const OrderCardDescription = styled.p`
   width: 100%;
   max-width: 240px;
   font-weight: 400;
@@ -82,7 +75,7 @@ const OrderCard3Description = styled.p`
   }
 `;
 
-const OrderCard3Price = styled.p`
+const OrderCardPrice = styled.p`
   margin: 0;
   font-size: 30px;
   line-height: 39px;
@@ -97,7 +90,7 @@ const OrderCard3Price = styled.p`
   }
 `;
 
-const OrderCard3Image = styled.img`
+const OrderCardImage = styled.img`
   width: 50%;
   border-radius: 0 10px 10px 0;
   background-size: cover;
@@ -109,15 +102,15 @@ const OrderCard3Image = styled.img`
   }
 `;
 
-export function OrderCard3Component({ card }: Props) {
+export function BestsellerCard({ card }: Props) {
   return (
-    <OrderCard3>
-      <OrderCard3Content>
-        <OrderCard3Title>{card.title}</OrderCard3Title>
-        <OrderCard3Description>{card.description}</OrderCard3Description>
-        <OrderCard3Price>{card.price}</OrderCard3Price>
-      </OrderCard3Content>
-      <OrderCard3Image style={{ backgroundImage: `url(${card.background})` }} />
-    </OrderCard3>
+    <OrderCard>
+      <OrderCardContent>
+        <OrderCardTitle>{card.title}</OrderCardTitle>
+        <OrderCardDescription>{card.description}</OrderCardDescription>
+        <OrderCardPrice>{card.price}</OrderCardPrice>
+      </OrderCardContent>
+      <OrderCardImage style={{ backgroundImage: `url(${card.background})` }} />
+    </OrderCard>
   );
 }

@@ -91,7 +91,7 @@ const LoginForm = ({ closeForm }: Props): JSX.Element => {
         onChange={(e: ChangeEvent<HTMLInputElement> ): void => { setLoginData({ ...loginData, password: e.target.value }); }}
       />
       <FormFooter>
-        <Button>Sign In</Button>
+        <Button color="#70c970">Sign In</Button>
       </FormFooter>
       {isFetching && <Spinner size={50} />}
     </StyledForm>

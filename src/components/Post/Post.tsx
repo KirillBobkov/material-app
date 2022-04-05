@@ -16,11 +16,10 @@ const StyledLi = styled.li<{ isFetching: boolean }>`
   justify-content: space-between;
   width: 100%;
   margin-bottom: 40px;
-  background-color: #f1f1f1;
+  background-color: #fffcf3;
   box-sizing: border-box;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
   border-radius: 10px;
-  overflow: hidden;
   ${props => props.isFetching ? 'filter: brightness(90%);' : ''}
 `;
 
@@ -43,7 +42,7 @@ const TextArea = styled.textarea`
   resize: none;
   border: none;
   color: #000000;
-  background-color: #f1f1f1;
+  background-color: #fffcf3;
 
   &:focus {
     outline: 1px solid transparent;
@@ -51,20 +50,41 @@ const TextArea = styled.textarea`
 
   &:disabled {
     color: #000000;
-    background-color: #f1f1f1;
+    background-color: #fffcf3;
   }
 `;
 
 const TextAreaTitle = styled(TextArea)`
   color: #000000;
-  background-color: #f1f1f1;
+  background-color: #fffcf3;
   font-size: 30px;
   font-family: Poppins-Regular;
 
   &:disabled {
     color: #000000;
-    background-color: #f1f1f1;
+    background-color: #fffcf3;
   }
+`;
+
+const PostTitle = styled.div`
+  display: block;
+  width: 100%;
+  padding: 20px;
+  border-radius: 10px;
+  color: #000000;
+  background-color: #fffcf3;
+  font-size: 30px;
+  font-family: Poppins-Regular;
+`;
+
+const PostContent = styled.div`
+  display: block;
+  width: 100%;
+  padding: 20px;
+  color: #000000;
+  background-color: #fffcf3;
+  font-family: Poppins-Regular;
+  font-size: 14px;
 `;
 
 interface Props {
@@ -102,6 +122,8 @@ const Post = ({ post }: Props ): JSX.Element => {
     setCurrentPost({ ...currentPost, title: post.title, body: post.body });
   };
 
+  const onDeletePost = (): void => { deletePost(post.id); };
+
   const onHandleChangeTitle = (e: any): void => { 
     if (e.target.value.length < 30 ) setCurrentPost({ ...currentPost, title: e.target.value }); 
   };
@@ -113,12 +135,21 @@ const Post = ({ post }: Props ): JSX.Element => {
   return (
     <StyledLi isFetching={isFetching}>
       <div>
-        <TextAreaTitle rows={2} disabled={!isEditing} value={currentPost.title} onChange={onHandleChangeTitle} />
-        <TextArea rows={5} disabled={!isEditing} value={currentPost.body} onChange={onHandleChangeBody} />
+        {isEditing ?
+          <>
+            <TextAreaTitle rows={2} disabled={!isEditing} value={currentPost.title} onChange={onHandleChangeTitle} />
+            <TextArea rows={5} disabled={!isEditing} value={currentPost.body} onChange={onHandleChangeBody} />
+          </>
+          :
+          <>
+            <PostTitle>{currentPost.title}</PostTitle>
+            <PostContent>{currentPost.body}</PostContent>
+          </>}
+       
       </div>
       <ButtonContainer>
-        <Button color="#f35656" onClick={() => deletePost(post.id)}>Delete post</Button>
-        {!isEditing && <Button color="#436e9d" onClick={onEditPost}>Edit post</Button>}
+        <Button color="#f35656" onClick={onDeletePost}>Delete post</Button>
+        {!isEditing && <Button onClick={onEditPost}>Edit post</Button>}
         {isEditing && <Button color="#a3a3a3" onClick={onCancelEditing}>Cancel changes</Button>}
         {isEditing && <Button color="#70c970" onClick={onSaveChanges}>Save post</Button>}
       </ButtonContainer>

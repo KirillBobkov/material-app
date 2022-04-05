@@ -12,10 +12,9 @@ const AboutBlockWrapper = styled.div`
   width: 100%;
   padding: 60px 25px;
   gap: 40px;
-  background: linear-gradient(90deg, #538ac6 0%, #9bd0ea 100%);
+  background: linear-gradient(90deg,#79b9ff 0%,#c2ebff 100%);
 
   @media (max-width: 600px) {
-    min-height: 338px;
     padding: 40px 25px;
     gap: 20px;
     justify-content: space-between;
