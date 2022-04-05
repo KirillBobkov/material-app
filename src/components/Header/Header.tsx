@@ -46,7 +46,7 @@ const StyledHeader = styled.header`
   height: 60px;
   padding: 0 20px;
   z-index: 100;
-  background: linear-gradient(90deg,#79b9ff 0%,#c2ebff 100%);;
+  background: #000000;
 
   @media (max-width: 450px) {
     padding: 0 5px;

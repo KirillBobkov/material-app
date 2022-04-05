@@ -7,12 +7,12 @@ import AuthStore from '../../state/AuthStore';
 const StyledCard = styled.div`
   min-height: 230px;
   width: 300px;
-  background: #ffffff;
+  background: #444444;
   box-sizing: border-box;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
-  color: #436e9d;
+  box-shadow: -5px 5px 23px rgba(0, 0, 0, 0.5);
+  color: #ffffff;
 `;
 
 const StyledCardHeader = styled.div`
@@ -32,12 +32,12 @@ const StyledRow = styled.div`
 
 const StyledValue = styled.span`
   flex: 1 0 50%;
-  color: #000000;
+  color: #a7a7a7;
 `;
 
 const StyledKey = styled(StyledValue)`
   font-weight: 700;
-  color: #436e9d;
+  color: #ffffff;
 `;
 
 const ProfileCard = (): JSX.Element  => {

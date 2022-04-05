@@ -14,6 +14,7 @@ const StyledButton = styled.button<Props>`
   letter-spacing: 0.1em;
   white-space: nowrap;
   text-overflow: ellipsis;
+  text-transform: uppercase;
   color: white;
   background: ${(props) => props.color || '#80bdff'};
   cursor: pointer;

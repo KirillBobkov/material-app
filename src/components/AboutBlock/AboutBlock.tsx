@@ -12,7 +12,7 @@ const AboutBlockWrapper = styled.div`
   width: 100%;
   padding: 60px 25px;
   gap: 40px;
-  background: linear-gradient(90deg,#79b9ff 0%,#c2ebff 100%);
+  background-color: #000000;
 
   @media (max-width: 600px) {
     padding: 40px 25px;
@@ -78,7 +78,7 @@ export const AboutBlock = ({ title, description, scrollToDirection, text }: Prop
     <AboutBlockWrapper ref={blockRef}>
       {title && <AboutBlockTitle>{title}</AboutBlockTitle>}
       {description && <AboutBlockDescription>{description}</AboutBlockDescription>}
-      <Button color="#f7b32b" onClick={scrollTo}>{text}</Button>
+      <Button color='#d5000b' onClick={scrollTo}>{text}</Button>
     </AboutBlockWrapper>
   );
 };

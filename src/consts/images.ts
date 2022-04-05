@@ -79,7 +79,7 @@ export const smallImages: ImageCard[] = [
 export const bidImages: ImageCard[] = [
   {
     'id': 'id_kdssjdf0',
-    'background': 'http://placekitten.com/490/500',
+    'background': 'http://placekitten.com/488/500',
   },
   {
     'id': 'id_kdssjdf1',
@@ -117,42 +117,42 @@ export const bidImages: ImageCard[] = [
 
 export const bestsellers: IBestsellerCard[] = [
   {
-    background: 'https://placekitten.com/200/250?1',
+    'background': 'http://placekitten.com/400/400',
     title: 'Kitten 1',
     description: '1x Shrimp Crunch Roll (8 pc) 1x California Roll (8 pc)',
     price: '$15.00',
     link: 'https://placekitten.com/200/250?1',
   },
   {
-    background: 'https://placekitten.com/200/250?2',
+    'background': 'http://placekitten.com/401/400',
     title: 'Kitten 2',
     description: '1x Shrimp Crunch Roll (8 pc) 1x California Roll (8 pc)',
     price: '$15.00',
     link: 'https://placekitten.com/200/250?2',
   },
   {
-    background: 'https://placekitten.com/200/250?3',
+    'background': 'http://placekitten.com/406/400',
     title: 'Kitten 3',
     description: '1x Shrimp Crunch Roll (8 pc) 1x California Roll (8 pc)',
     price: '$15.00',
     link: 'https://placekitten.com/200/250?3',
   },
   {
-    background: 'https://placekitten.com/200/250?4',
+    'background': 'http://placekitten.com/403/400',
     title: 'Kitten 4',
     description: '1x Shrimp Crunch Roll (8 pc) 1x California Roll (8 pc)',
     price: '$15.00',
     link: 'https://placekitten.com/200/250?4',
   },
   {
-    background: 'https://placekitten.com/200/250?5',
+    'background': 'http://placekitten.com/404/400',
     title: 'Kitten 5',
     description: '1x Shrimp Crunch Roll (8 pc) 1x California Roll (8 pc)',
     price: '$15.00',
     link: 'https://placekitten.com/200/250?5',
   },
   {
-    background: 'https://placekitten.com/200/250?6',
+    'background': 'http://placekitten.com/405/400',
     title: 'Kitten 6',
     description: '1x Shrimp Crunch Roll (8 pc) 1x California Roll (8 pc)',
     price: '$15.00',

@@ -30,7 +30,7 @@ const OrderCardContent = styled.div`
   width: 50%;
   padding: 40px;
   border-radius: 10px 0 0 10px;
-  background-color: #e5ffe2;
+  background-color: #000000;
 
   @media (max-width: 1024px) {
     width: 100%;
@@ -43,7 +43,6 @@ const OrderCardTitle = styled.h2`
   font-size: 30px;
   line-height: 39px;
   text-transform: uppercase;
-  color: #000000;
   margin: 0;
   margin-bottom: 20px;
 
@@ -81,7 +80,6 @@ const OrderCardPrice = styled.p`
   line-height: 39px;
   font-weight: 700;
   text-transform: uppercase;
-  color: #5acb8c;
 
   @media (max-width: 1024px) {
     margin-bottom: 30px;

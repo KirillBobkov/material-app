@@ -28,9 +28,9 @@ const StyledForm = styled.form<{ isFetching: boolean }>`
   min-height: 230px;
   width: 310px;
   padding: 20px;
-  background: #ffffff;
+  background: #444444;
   box-sizing: border-box;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  box-shadow: -5px 5px 23px rgba(0, 0, 0, 0.5);
   border-radius: 10px;
   ${props => props.isFetching ? 'filter: brightness(90%);' : ''}
 `;
@@ -43,7 +43,7 @@ const FormTitle = styled.h2`
   text-align: center;
   margin: 0;
   margin-bottom: 15px;
-  color: #436e9d;
+  color: #ffffff;
 `;
 
 const LoginForm = ({ closeForm }: Props): JSX.Element => {
@@ -51,6 +51,10 @@ const LoginForm = ({ closeForm }: Props): JSX.Element => {
   const [errors, setError] = useState<ILogin | null>(null);
   const [isFetching, setFetching] = useState<boolean>(false);
   const { setTokenToStorage, setProfile } = AuthStore;
+
+  const handleChangeEmail = (e: ChangeEvent<HTMLInputElement>): void => { setLoginData({ ...loginData, email: e.target.value }); };
+
+  const handleChangePassword = (e: ChangeEvent<HTMLInputElement>): void => { setLoginData({ ...loginData, password: e.target.value }); };
 
   const onSubmit = async (e: any): Promise<any> => {
     e.preventDefault();
@@ -80,7 +84,7 @@ const LoginForm = ({ closeForm }: Props): JSX.Element => {
         placeholder="Enter your e-mail"
         value={loginData.email}
         invalidMessage={errors?.email || ''}
-        onChange={(e: ChangeEvent<HTMLInputElement> ): void => { setLoginData({ ...loginData, email: e.target.value }); }}
+        onChange={handleChangeEmail}
       />
       <Input
         type='password'
@@ -88,10 +92,10 @@ const LoginForm = ({ closeForm }: Props): JSX.Element => {
         placeholder="Enter password"
         invalidMessage={errors?.password || ''}
         value={loginData.password}
-        onChange={(e: ChangeEvent<HTMLInputElement> ): void => { setLoginData({ ...loginData, password: e.target.value }); }}
+        onChange={handleChangePassword}
       />
       <FormFooter>
-        <Button color="#70c970">Sign In</Button>
+        <Button color='#d5000b'>Sign In</Button>
       </FormFooter>
       {isFetching && <Spinner size={50} />}
     </StyledForm>

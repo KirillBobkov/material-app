@@ -14,14 +14,14 @@ const StyledCounter  = styled.div`
   width: 100%;
   margin-bottom: 40px;
   margin-top: 40px;
-  background-color: #fff2f2;
+  background-color: #000000;
   border-radius: 10px;
   box-sizing: border-box;
-  box-shadow: 0 4px 12px rgb(0, 0, 0, 0.12);
+  box-shadow: -5px 5px 23px rgba(0, 0, 0, 0.5);
   font-weight: 700;
   font-size: 20px;
   font-family: Poppins-Regular;
-  color: red;
+  color: #ffffff;
 `;
 
 const Counter = ({ count }: Props): JSX.Element => (

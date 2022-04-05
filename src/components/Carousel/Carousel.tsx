@@ -62,8 +62,8 @@ const CarouselArrowButtonLeft = styled.div`
     top: 50%;
     width: 15px;
     height: 15px;
-    border-right: 3px solid black;
-    border-bottom: 3px solid black;
+    border-right: 3px solid #ffffff;
+    border-bottom: 3px solid #ffffff;
     left: 49px;
     transform: rotate(135deg);
   }
@@ -88,8 +88,8 @@ const CarouselArrowButtonRight = styled.div`
     top: 50%;
     width: 15px;
     height: 15px;
-    border-right: 3px solid black;
-    border-bottom: 3px solid black;
+    border-right: 3px solid #ffffff;
+    border-bottom: 3px solid #ffffff;
     right: 49px;
     transform: rotate(-45deg);
   }

@@ -16,9 +16,10 @@ const StyledLi = styled.li<{ isFetching: boolean }>`
   justify-content: space-between;
   width: 100%;
   margin-bottom: 40px;
-  background-color: #fffcf3;
+  background-color: #4f4f4f;
+  color: #ffffff;
   box-sizing: border-box;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  box-shadow: -5px 5px 23px rgba(0, 0, 0, 0.5);
   border-radius: 10px;
   ${props => props.isFetching ? 'filter: brightness(90%);' : ''}
 `;
@@ -40,30 +41,18 @@ const TextArea = styled.textarea`
   font-family: Poppins-Regular;
   font-size: 14px;
   resize: none;
+  background-color: #4f4f4f;
   border: none;
-  color: #000000;
-  background-color: #fffcf3;
+  color: #ffffff;
 
   &:focus {
     outline: 1px solid transparent;
   }
-
-  &:disabled {
-    color: #000000;
-    background-color: #fffcf3;
-  }
 `;
 
 const TextAreaTitle = styled(TextArea)`
-  color: #000000;
-  background-color: #fffcf3;
   font-size: 30px;
   font-family: Poppins-Regular;
-
-  &:disabled {
-    color: #000000;
-    background-color: #fffcf3;
-  }
 `;
 
 const PostTitle = styled.div`
@@ -71,8 +60,6 @@ const PostTitle = styled.div`
   width: 100%;
   padding: 20px;
   border-radius: 10px;
-  color: #000000;
-  background-color: #fffcf3;
   font-size: 30px;
   font-family: Poppins-Regular;
 `;
@@ -81,8 +68,6 @@ const PostContent = styled.div`
   display: block;
   width: 100%;
   padding: 20px;
-  color: #000000;
-  background-color: #fffcf3;
   font-family: Poppins-Regular;
   font-size: 14px;
 `;
@@ -148,10 +133,10 @@ const Post = ({ post }: Props ): JSX.Element => {
        
       </div>
       <ButtonContainer>
-        <Button color="#f35656" onClick={onDeletePost}>Delete post</Button>
-        {!isEditing && <Button onClick={onEditPost}>Edit post</Button>}
+        <Button color="#d5000b" onClick={onDeletePost}>Delete post</Button>
+        {!isEditing && <Button color="#252525" onClick={onEditPost}>Edit post</Button>}
         {isEditing && <Button color="#a3a3a3" onClick={onCancelEditing}>Cancel changes</Button>}
-        {isEditing && <Button color="#70c970" onClick={onSaveChanges}>Save post</Button>}
+        {isEditing && <Button color="#252525" onClick={onSaveChanges}>Save post</Button>}
       </ButtonContainer>
       {isFetching && <Spinner size={50} />}
     </StyledLi>

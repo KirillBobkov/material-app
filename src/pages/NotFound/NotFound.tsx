@@ -7,7 +7,7 @@ const StyledTitle = styled.h1`
   margin-bottom: 30px;
   margin-top: 10vh;
   font-size: 10vh;
-  color: #f7b32b;
+  color: #ffffff;
 `;
 
 const StyledDescription = styled.h2`
@@ -15,7 +15,7 @@ const StyledDescription = styled.h2`
   margin: 0;
   padding: 0 20px;
   font-size: 2vh;
-  color: #79b9ff;
+  color: #929292;
 `;
 
 const NotFound = (): JSX.Element => (

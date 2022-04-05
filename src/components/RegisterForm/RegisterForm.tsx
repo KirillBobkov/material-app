@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { ChangeEvent, FormEvent, useState } from 'react';
 import styled from 'styled-components';
 import { AxiosError } from 'axios';
 
@@ -14,22 +14,20 @@ interface Props {
   closeForm: () => void;
 }
 
-const getInitialState = (): any =>  {
-  return {
-    email: '',
-    password: '',
-    firstName: '',
-    lastName: '',
-  };
-};
+const getInitialState = (): IRegistration =>  ({
+  email: '',
+  password: '',
+  firstName: '',
+  lastName: '',
+});
 
 const StyledForm = styled.form<{ isFetching: boolean }>`
   min-height: 230px;
   width: 300px;
-  background: #ffffff;
+  background: #444444;
   box-sizing: border-box;
   padding: 20px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  box-shadow: -5px 5px 23px rgba(0, 0, 0, 0.5);
   border-radius: 10px;
   ${props => props.isFetching ? 'filter: brightness(90%);' : ''}
 `;
@@ -42,15 +40,31 @@ const FormTitle = styled.h2`
   text-align: center;
   margin: 0;
   margin-bottom: 15px;
-  color: #436e9d;
+  color: #ffffff;
 `;
 
 const RegisterForm = ({ closeForm }: Props): JSX.Element  => {
   const [registerData, setRegisterData] = useState<IRegistration>(getInitialState());
   const [errors, setError] = useState<IRegistration | null>(null);
   const [isFetching, setFetching] = useState<boolean>(false);
+  
+  const handleChangeFirstName = (e: ChangeEvent<HTMLInputElement>): void => { 
+    setRegisterData({ ...registerData, firstName: e.target.value }); 
+  };
 
-  const onSubmit = async (e: any): Promise<any> => {
+  const handleChangeLastName = (e: ChangeEvent<HTMLInputElement>): void => { 
+    setRegisterData({ ...registerData, lastName: e.target.value }); 
+  };
+
+  const handleChangeEmail = (e: ChangeEvent<HTMLInputElement>): void => { 
+    setRegisterData({ ...registerData, email: e.target.value });
+  };
+
+  const handleChangePassword = (e: ChangeEvent<HTMLInputElement>): void => { 
+    setRegisterData({ ...registerData, password: e.target.value });
+  };
+
+  const onSubmit = async (e: FormEvent): Promise<any> => {
     e.preventDefault();
     setFetching(true);
 
@@ -76,21 +90,21 @@ const RegisterForm = ({ closeForm }: Props): JSX.Element  => {
         invalidMessage={errors?.firstName || ''}
         value={registerData.firstName}
         placeholder="Enter your first name"
-        onChange={(e: any ): void => { setRegisterData({ ...registerData, firstName: e.target.value }); }}
+        onChange={handleChangeFirstName}
       />
       <Input
         label="Last name"
         placeholder="Enter your last name"
         invalidMessage={errors?.lastName || ''}
         value={registerData.lastName}
-        onChange={(e: any ): void => { setRegisterData({ ...registerData, lastName: e.target.value }); }}
+        onChange={handleChangeLastName}
       />
       <Input
         label="E-mail"
         value={registerData.email}
         invalidMessage={errors?.email || ''}
         placeholder="Enter your e-mail"
-        onChange={(e: any ): void => { setRegisterData({ ...registerData, email: e.target.value }); }}
+        onChange={handleChangeEmail}
       />
       <Input
         label="Password"
@@ -98,9 +112,9 @@ const RegisterForm = ({ closeForm }: Props): JSX.Element  => {
         value={registerData.password}
         invalidMessage={errors?.password || ''}
         placeholder="Enter your password"
-        onChange={(e: any ): void => { setRegisterData({ ...registerData, password: e.target.value }); }}
+        onChange={handleChangePassword}
       />
-      <FormFooter><Button color="#70c970">Sign up</Button></FormFooter>
+      <FormFooter><Button color='#d5000b'>Sign up</Button></FormFooter>
       {isFetching && <Spinner size={50} />}
     </StyledForm>
   );      

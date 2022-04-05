@@ -27,12 +27,12 @@ const StyledSpinner = styled.div<Props>`
 
   width: ${props => props.size}px;
   height: ${props => props.size}px;
-  border-top-color: #436e9d;
+  border-top-color: #D5000B;
   top: calc(50% - 25px);
   left: calc(50% - ${props => props.size * 0.5}px);
 
   &::before {
-    border-top-color: #436e9d;
+    border-top-color: #D5000B;
     animation-duration: 4s;
     top: 2px;
     bottom: 2px;
