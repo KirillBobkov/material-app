@@ -1,10 +1,9 @@
-# Quotes
 DEMO: https://read-quotes.netlify.app/
 
 Application with basic authorization.
-You could update, delete, edit your own quotes.
+CRUD operations from client to server
 
-Technologies: react, mobx,  styled-components, typescript
+Technologies: react, mobx, styled-components, typescript
 
 Intalling: npm install
 
